@@ -1,0 +1,72 @@
+<!--
+  Generated template for the DashboardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+    <ion-navbar>
+      <ion-title>Senai 5s</ion-title>
+    </ion-navbar>
+  
+</ion-header>
+
+  <ion-content padding style="background-color: #3c9a7b">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-sm-6  class="evaluation-start-container">
+          <h2 text-center style="color:white">{{evaluationList[index].question}}</h2> 
+          <ion-card> 
+              <ion-card-content>
+                <form id="form-evalution-start">              
+                  <ion-list> 
+                      Escolha uma das opções abaixo:  
+                      <ion-row>
+                        <ion-col col-06 push-1>
+                          <ion-item>
+                            <ion-icon class="evaluation-start-notes-icon" name="md-thumbs-up" [ngStyle]="{'color': mdThumbsUp.color}" (click)="alternateColor('md-thumbs-up')"></ion-icon>    
+                          </ion-item>
+                        </ion-col>
+                        <ion-col col-06 push-1>
+                          <ion-item>
+                            <ion-icon class="evaluation-start-notes-icon" name="md-thumbs-down" [ngStyle]="{'color': mdThumbsDown.color}" (click)="alternateColor('md-thumbs-down')"></ion-icon>    
+                          </ion-item>
+                        </ion-col>
+                      </ion-row>
+                      <ion-item>
+                        <textarea #myInput class="evaluation-start-description" rows="3" maxLength="200" (keyup)="resize()" placeholder="Descrição"></textarea>                          
+                      </ion-item>
+                      <ion-row>
+                        <div *ngIf="index>=1" col-12>
+                          <button ion-button class="button-form" col-6 color="secondary"  (click)="goPrevious()">
+                            <ion-label>
+                              Voltar
+                            </ion-label>
+                          </button>
+                        </div>
+                        <div *ngIf="index<2" col-12>
+                          <button ion-button class="button-form" col-6 color="secondary"  (click)="goNext()">
+                            <ion-label>
+                              Próxima
+                            </ion-label>
+                          </button>
+                        </div>
+                      </ion-row>    
+                      <div *ngIf="index==2">
+                        <button ion-button class="button-form" col-10 color="secondary"  (click)="viewActionPlan()">
+                          <ion-label>
+                            Plano de Ação
+                          </ion-label>
+                        </button>
+                      </div>                  
+                    </ion-list>
+                </form>
+              </ion-card-content>      
+            </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+      
+  </ion-content>
+  
