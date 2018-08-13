@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
 import { ResponsibleDashboardPage } from '../responsible-dashboard/responsible-dashboard';
 import { UserConfigPage } from '../user-config/user-config'
 import { User } from '../../model/user';
-import { ProfileEnums } from '../../enums/profileEnums';
+import { UserType } from '../../enums/userType';
+import { LoginPage } from '../login/login';
+import { UserProfilePage } from '../user-profile/user-profile';
 
 /**
  * Generated class for the FooterTabsPage page.
@@ -21,8 +23,29 @@ import { ProfileEnums } from '../../enums/profileEnums';
 export class FooterTabsPage {
 
   getDashboardByProfile(){
-    if( User.profile === 'avaliador'   ) { return DashboardPage;  }
-    if( User.profile === 'responsavel' ) { return ResponsibleDashboardPage; }
+    /*if( User.profile === UserType.ADMIN_APPRAISER   ) { return DashboardPage;  } 
+    if( User.profile ==  UserType.ADMIN_RESPONSIBLE ) { return ResponsibleDashboardPage; }
+*/
+    console.log('UserProfile '+User.profile);
+    switch(User.profile) {
+      case 2:
+        return DashboardPage;
+
+      case 3:
+        return DashboardPage;
+
+      case 4:
+        return ResponsibleDashboardPage;
+      
+      case 5:
+        return ResponsibleDashboardPage;
+
+      case 6:
+        return UserProfilePage;
+
+      default:
+        return UserProfilePage;
+    }
   }
 
   dashBoardPage  = this.getDashboardByProfile();

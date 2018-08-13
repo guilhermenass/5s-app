@@ -4,6 +4,6 @@ export class User {
     static email: string;
     password: string;
     static login: string;
-    static profile: string;
+    static profile: number;
     
   }

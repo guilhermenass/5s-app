@@ -17,9 +17,9 @@ import { GenerateActionPlanPage } from '../generate-action-plan/generate-action-
 })
 export class EvaluationStartPage {
 
-  private mdThumbsUp = { color: 'black'};
-  private mdThumbsDown = { color: 'black'};
-  private index = 0;
+  private mdThumbsUp = { color: 'DarkGray'};
+  private mdThumbsDown = { color: 'DarkGray'};
+  private index = 1;
   private evaluationList = [
     {
       question: "1 - O ambiente está devidamente limpo?",
@@ -56,10 +56,10 @@ export class EvaluationStartPage {
     
     if(iconClick == 'md-thumbs-up'){
       this.mdThumbsUp.color   = 'green';
-      this.mdThumbsDown.color = 'black';
+      this.mdThumbsDown.color = 'DarkGray';
     }else{
       this.mdThumbsDown.color = 'red';
-      this.mdThumbsUp.color   = 'black';
+      this.mdThumbsUp.color   = 'DarkGray';
     }
   
   }
