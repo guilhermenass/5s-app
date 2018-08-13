@@ -1,9 +1,3 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -12,12 +6,20 @@
 
 </ion-header>
 
-<ion-content padding style="background-color: #95c195">
+<ion-content padding style="background-color: #2c3e50">
   
   <ion-grid>
+    <ion-row text-center>  
+      <ion-col>
+        <ion-img width="200" style="background: none" src="../.././assets/imgs/logo-rodape.png"></ion-img>
+      </ion-col>
+    </ion-row>
     <ion-row>
-      <ion-col col-12 col-sm-6  class="login-container">
+      <ion-col class="login-container">
         <ion-card> 
+          <!--ion-content text-right>
+            <ion-img width="270" height="90" style="background: none" src="../.././assets/imgs/logo-rodape.png"></ion-img>
+          </ion-content-->
             <ion-card-header>
               Bem Vindo
             </ion-card-header>     
@@ -39,7 +41,7 @@
                       <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
                     </ion-item>
 
-                    <ion-label>
+                    <!--ion-label>
                       Selecione o seu Perfil
                     </ion-label> 
                     <ion-list radio-group [(ngModel)]="user.profile" name="profile" required>
@@ -51,10 +53,10 @@
                         <ion-label>Responsável</ion-label>
                         <ion-radio value="responsavel"></ion-radio>
                       </ion-item>
-                    </ion-list>
+                    </ion-list-->
                     
-                    <button ion-button class="button-form" type="submit" col-12 color="secondary" [disabled]="!f.form.valid">
-
+                    <button ion-button   type="submit" col-12 color="secondary" [disabled]="!f.form.valid">
+                    <br>
                       <ion-label>
                          Entrar
                       </ion-label>

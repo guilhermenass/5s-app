@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the ForgotPasswordPage page.
@@ -15,8 +16,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ForgotPasswordPage {
 
+  emailForgotPassword: string;
   constructor(
     public navCtrl: NavController, 
+    public  authService: AuthServiceProvider, 
     public navParams: NavParams) {
   }
+
+  forgotPassword() {
+    this.authService.forgotPassword(this.emailForgotPassword).then((result) => {
+      alert(true);
+    }, (err) => {
+     console.error(err)
+    });
+  }
+
 }

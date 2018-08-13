@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { DashboardPage } from '../dashboard/dashboard';
 import { MainPage } from '../main/main';
 import { User } from '../../model/user';
 
@@ -21,7 +20,7 @@ import { User } from '../../model/user';
 export class LoginPage {
 
   private loading: any;
-  private user = { email:'', password:'', profile:'' };
+  private user = { email:'', password:'', profile:0 };
   private data: any;
 
   constructor(
@@ -38,31 +37,29 @@ export class LoginPage {
 
   doLogin() {
     this.showLoader();
-    this.authService.login(this.user).then((result) => {
-      
-      this.loading.dismiss();
-      this.data = result;
-      User.profile = this.user.profile; 
-      localStorage.setItem('token', this.data.token);
-      this.navCtrl.setRoot(MainPage);
-    
-    }, (err) => {
-      this.loading.dismiss();     
-      
-      if(err._body.type == 'error'){
-        this.presentToast('Falha ao se comunicar com o servidor');
-        return false;
-      }
-      
-      this.presentToast(err._body);
-    });
+    this.authService.login(this.user)
+      .then((result) => 
+      {
+        this.loading.dismiss();
+        this.data = result;
+        User.profile = this.data.profile; 
+        localStorage.setItem('token', this.data.token);
+        this.navCtrl.push(MainPage);
+      }, (err) => {
+        this.loading.dismiss();     
+        
+        if(err._body.type == 'error'){
+          this.presentToast('Falha ao se comunicar com o servidor');
+          return false;
+        }
+        this.presentToast(err._body);
+      });
   }
 
   showLoader(){
     this.loading = this.loadingCtrl.create({
         content: 'Entrando...'
     });
-
     this.loading.present();
   }
 

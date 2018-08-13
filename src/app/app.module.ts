@@ -9,8 +9,6 @@ import { ChartsModule } from 'ng2-charts';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
-import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password'
-import { ForgotPasswordPageModule } from '../pages/forgot-password/forgot-password.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { DashboardPage } from '../pages/dashboard/dashboard';
@@ -27,12 +25,12 @@ import { MainPage } from '../pages/main/main';
 import { ExpandableComponent } from '../components/expandable/expandable'
 
 import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
+import { UserProfilePage } from '../pages/user-profile/user-profile';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    ForgotPasswordPage,
     DashboardPage,
     ResponsibleDashboardPage,
     FooterTabsPage,
@@ -42,6 +40,7 @@ import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
     GenerateActionPlanPage,
     ExecuteActionPlanPage,
     UserConfigPage,
+    UserProfilePage,
     MainPage,
     ExpandableComponent
   ],
@@ -55,7 +54,6 @@ import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
   entryComponents: [
     MyApp,
     LoginPage,
-    ForgotPasswordPage,
     DashboardPage,
     ResponsibleDashboardPage,
     ExecuteActionPlanPage,
@@ -63,6 +61,7 @@ import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
     EvaluationsPage,
     EvaluationStartPage,
     UserConfigPage,
+    UserProfilePage,
     EvaluationResumePage,
     GenerateActionPlanPage,
     MainPage,
