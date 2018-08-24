@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ConsumesApiProvider {
 
-  private baseRoute:string = 'http://localhost:4000/';
+  private baseRoute:string = 'https://api-senai5s.herokuapp.com/';
 
   constructor(public http: Http) {}
 

@@ -4,7 +4,7 @@ import { GenerateActionPlanPage } from '../generate-action-plan/generate-action-
 
 
 /**
- * Generated class for the EvaluationStartPage page.
+ * Generated class for the AuditStartPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,15 +12,15 @@ import { GenerateActionPlanPage } from '../generate-action-plan/generate-action-
 
 @IonicPage()
 @Component({
-  selector: 'page-evaluation-start',
-  templateUrl: 'evaluation-start.html',
+  selector: 'page-audit-start',
+  templateUrl: 'audit-start.html',
 })
-export class EvaluationStartPage {
+export class AuditStartPage {
 
   private mdThumbsUp = { color: 'DarkGray'};
   private mdThumbsDown = { color: 'DarkGray'};
   private index = 1;
-  private evaluationList = [
+  private auditList = [
     {
       question: "1 - O ambiente está devidamente limpo?",
       note: 0,
@@ -42,7 +42,7 @@ export class EvaluationStartPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EvaluationStartPage');
+    console.log('ionViewDidLoad AuditStartPage');
   }
 
   @ViewChild('myInput') myInput: ElementRef;

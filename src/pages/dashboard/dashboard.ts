@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { EvaluationResumePage } from '../evaluation-resume/evaluation-resume'
+import { AuditResumePage } from '../audit-resume/audit-resume'
+import { AuditServiceProvider } from '../../providers/audit-service';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 /**
  * Generated class for the DashboardPage page.
@@ -16,47 +18,58 @@ import { EvaluationResumePage } from '../evaluation-resume/evaluation-resume'
 })
 export class  DashboardPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public auditService: AuditServiceProvider,
+              private nativeStorage: NativeStorage) {}
 
-  showEvaluationsSuccess = false;
-  showEvaluationsDelayed = false;
-  showEvaluationsPending = false;
+  showAuditsSuccess = false;
+  showAuditsDelayed = false;
+  showAuditsPending = false;
 
-  goToEvaluationResume(){
-    this.navCtrl.push(EvaluationResumePage);
+  goToAuditResume(){
+    this.navCtrl.push(AuditResumePage);
   }
 
   ionViewDidLoad() {
+    // this.auditService.search().subscribe(x => {
+    //   console.log('xxxx',x);
+    // });
+    this.nativeStorage.getItem('myitem')
+      .then(
+        data => console.log(data),
+        error => console.error(error)
+      );
     console.log('ionViewDidLoad DashboardPage');
   }
 
-  changeShowEvaluationSuccess(){
-    if(!this.showEvaluationsSuccess){
-      this.showEvaluationsSuccess = true;
-      this.showEvaluationsDelayed = false;
-      this.showEvaluationsPending = false;
+  changeShowAuditSuccess(){
+    if(!this.showAuditsSuccess){
+      this.showAuditsSuccess = true;
+      this.showAuditsDelayed = false;
+      this.showAuditsPending = false;
     } else {
-      this.showEvaluationsSuccess = false;      
+      this.showAuditsSuccess = false;      
     }
   }
 
-  changeShowEvaluationDelayed(){
-    if(!this.showEvaluationsDelayed){
-      this.showEvaluationsDelayed = true;
-      this.showEvaluationsSuccess = false;
-      this.showEvaluationsPending = false;
+  changeShowAuditDelayed(){
+    if(!this.showAuditsDelayed){
+      this.showAuditsDelayed = true;
+      this.showAuditsSuccess = false;
+      this.showAuditsPending = false;
     } else {
-      this.showEvaluationsDelayed = false;      
+      this.showAuditsDelayed = false;      
     }
   }
 
-  changeShowEvaluationPending(){
-    if(!this.showEvaluationsPending){
-      this.showEvaluationsPending = true;
-      this.showEvaluationsDelayed = false;
-      this.showEvaluationsSuccess = false;
+  changeShowAuditPending(){
+    if(!this.showAuditsPending){
+      this.showAuditsPending = true;
+      this.showAuditsDelayed = false;
+      this.showAuditsSuccess = false;
     } else {
-      this.showEvaluationsPending = false;      
+      this.showAuditsPending = false;      
     }
   }
 
