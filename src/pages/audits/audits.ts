@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the EvaluationsPage page.
+ * Generated class for the AuditsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,10 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-evaluations',
-  templateUrl: 'evaluations.html',
+  selector: 'page-audits',
+  templateUrl: 'audits.html',
 })
-export class EvaluationsPage {
+export class AuditsPage {
 
   
 
@@ -21,7 +21,7 @@ export class EvaluationsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EvaluationsPage');
+    console.log('ionViewDidLoad AuditsPage');
   }
 
 }

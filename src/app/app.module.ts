@@ -15,9 +15,9 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ResponsibleDashboardPage } from '../pages/responsible-dashboard/responsible-dashboard';
 import { ExecuteActionPlanPage } from '../pages/execute-action-plan/execute-action-plan';
 import { FooterTabsPage } from '../pages/footer-tabs/footer-tabs';
-import { EvaluationsPage } from '../pages/evaluations/evaluations';
-import { EvaluationResumePage } from '../pages/evaluation-resume/evaluation-resume'
-import { EvaluationStartPage } from '../pages/evaluation-start/evaluation-start';
+import { AuditsPage } from '../pages/audits/audits';
+import { AuditResumePage } from '../pages/audit-resume/audit-resume'
+import { AuditStartPage } from '../pages/audit-start/audit-start';
 import { GenerateActionPlanPage } from '../pages/generate-action-plan/generate-action-plan';
 import { UserConfigPage } from '../pages/user-config/user-config';  
 import { MainPage } from '../pages/main/main';
@@ -26,6 +26,8 @@ import { ExpandableComponent } from '../components/expandable/expandable'
 
 import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { AuditServiceProvider } from '../providers/audit-service';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
@@ -34,9 +36,9 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
     DashboardPage,
     ResponsibleDashboardPage,
     FooterTabsPage,
-    EvaluationsPage,
-    EvaluationResumePage,
-    EvaluationStartPage,
+    AuditsPage,
+    AuditResumePage,
+    AuditStartPage,
     GenerateActionPlanPage,
     ExecuteActionPlanPage,
     UserConfigPage,
@@ -58,11 +60,11 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
     ResponsibleDashboardPage,
     ExecuteActionPlanPage,
     FooterTabsPage,
-    EvaluationsPage,
-    EvaluationStartPage,
+    AuditsPage,
+    AuditStartPage,
     UserConfigPage,
     UserProfilePage,
-    EvaluationResumePage,
+    AuditResumePage,
     GenerateActionPlanPage,
     MainPage,
     ExpandableComponent
@@ -72,7 +74,9 @@ import { UserProfilePage } from '../pages/user-profile/user-profile';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
-    ConsumesApiProvider
+    AuditServiceProvider,
+    ConsumesApiProvider,
+    NativeStorage
   ]
 })
 export class AppModule {}

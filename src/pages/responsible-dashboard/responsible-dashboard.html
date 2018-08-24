@@ -12,13 +12,13 @@
     </div>
     <ion-grid>
       <ion-card >
-        <ion-card-header style="background-color: #F3F781; opacity:0.8" (click)="changeShowEvaluationPending()" >
+        <ion-card-header style="background-color: #F3F781; opacity:0.8" (click)="changeShowAuditPending()" >
           Pendentes
         </ion-card-header>
         
-        <ion-card-content *ngIf="showEvaluationsPending">   
+        <ion-card-content *ngIf="showAuditsPending">   
           <ion-list>           
-            <ion-item (click)="goToEvaluationResume()">
+            <ion-item (click)="goToAuditResume()">
               <ion-avatar item-start>                     
                 <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
               </ion-avatar>
@@ -31,13 +31,13 @@
       </ion-card>
   
       <ion-card >
-          <ion-card-header style="background-color: #F5A9A9; opacity:0.8" (click)="changeShowEvaluationPending()" >
+          <ion-card-header style="background-color: #F5A9A9; opacity:0.8" (click)="changeShowAuditPending()" >
             Atrasados
           </ion-card-header>
           
-          <ion-card-content *ngIf="showEvaluationsPending">   
+          <ion-card-content *ngIf="showAuditsPending">   
             <ion-list>           
-              <ion-item (click)="goToEvaluationResume()">
+              <ion-item (click)="goToAuditResume()">
                 <ion-avatar item-start>                     
                   <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
                 </ion-avatar>

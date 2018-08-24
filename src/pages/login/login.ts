@@ -4,6 +4,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { MainPage } from '../main/main';
 import { User } from '../../model/user';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 /**
  * Generated class for the LoginPage page.
@@ -28,7 +29,8 @@ export class LoginPage {
     public  navParams  : NavParams,
     public  authService: AuthServiceProvider, 
     public  loadingCtrl: LoadingController, 
-    private toastCtrl  : ToastController
+    private toastCtrl  : ToastController,
+    private nativeStorage: NativeStorage
   ) {}
 
   goToForgotPassWord(){
@@ -40,6 +42,11 @@ export class LoginPage {
     this.authService.login(this.user)
       .then((result) => 
       {
+        this.nativeStorage.setItem('myitem', {property: 'value', anotherProperty: 'anotherValue'})
+          .then(
+            () => console.log('Stored item!'),
+            error => console.error('Error storing item', error)
+          );
         this.loading.dismiss();
         this.data = result;
         User.profile = this.data.profile; 

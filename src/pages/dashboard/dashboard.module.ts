@@ -3,11 +3,11 @@ import { IonicPageModule } from 'ionic-angular';
 import { DashboardPage } from './dashboard';
 
 @NgModule({
-  declarations: [
-    DashboardPage,
-  ],
   imports: [
     IonicPageModule.forChild(DashboardPage),
   ],
+  declarations: [
+    DashboardPage,
+  ]
 })
 export class DashboardPageModule {}
