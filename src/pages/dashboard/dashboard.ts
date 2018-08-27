@@ -32,9 +32,9 @@ export class  DashboardPage {
   }
 
   ionViewDidLoad() {
-    // this.auditService.search().subscribe(x => {
-    //   console.log('xxxx',x);
-    // });
+    this.auditService.search().subscribe(x => {
+      console.log('xxxx',x);
+    });
     this.nativeStorage.getItem('myitem')
       .then(
         data => console.log(data),
