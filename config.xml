@@ -1,6 +1,6 @@
 <widget id="guilhermenass.cenouraapp" version="1.0.0"><name>
         Só de Cenoura
-    </name><icon src="icon.png"/><plugin name="cordova-plugin-splashscreen"/><splash src="splash.png"/><description>
+    </name><icon src="icon.png"/><plugin name="cordova-plugin-splashscreen"/><description>
         Menu do restaurante Só de Cenoura.
     </description><author href="https://www.google.com" email="nassguilherme@gmail.com">
         Guilherme Nass
