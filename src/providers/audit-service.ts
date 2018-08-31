@@ -10,7 +10,7 @@ import { Audit } from '../model/audit';
 @Injectable()
 export class AuditServiceProvider {
 
-  apiUrl = 'https://api-senai5s.herokuapp.com/';
+  apiUrl = 'https://api-senai5s.herokuapp.com/audits';
 
   constructor(public http: Http) {}  
 

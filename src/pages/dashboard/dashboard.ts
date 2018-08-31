@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuditResumePage } from '../audit-resume/audit-resume'
 import { AuditServiceProvider } from '../../providers/audit-service';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Audit } from '../../model/audit';
 
 /**
  * Generated class for the DashboardPage page.
@@ -17,6 +18,18 @@ import { NativeStorage } from '@ionic-native/native-storage';
   templateUrl: 'dashboard.html'
 })
 export class  DashboardPage {
+  
+  // private id: number;
+  // private title: string;
+  // private status: string; 
+  // private createAt: Date;
+  // private initialDate: Date;
+  // private attachment: string;
+  // private note: number;
+  // private userId: number;
+  // private endDate: Date;
+  // private currentResponsible: number;
+  audits: Array<Audit>;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
