@@ -6,13 +6,17 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/throw';
 import { Audit } from '../model/audit';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuditServiceProvider {
 
   apiUrl = 'https://api-senai5s.herokuapp.com/audits';
 
-  constructor(public http: Http) {}  
+
+  /* Temos que ver o impacto de mudar de http para httpclient.
+   O interceptor só funciona com httpclient. */
+  constructor(public http: HttpClient) {}  
 
     search(): Observable<Audit> {
          return this.http.get(this.apiUrl)
@@ -34,6 +38,6 @@ export class AuditServiceProvider {
 */
     
     private handleError(error: Response) {
-        return Observable.throw(error.json().error || 'Server error');
+        return Observable.throw(error || 'Server error');
     }
 }
