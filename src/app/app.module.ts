@@ -23,11 +23,14 @@ import { UserConfigPage } from '../pages/user-config/user-config';
 import { MainPage } from '../pages/main/main';
 
 import { ExpandableComponent } from '../components/expandable/expandable'
-
+import { TokenInterceptor } from '../providers/interceptor-token';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { AuditServiceProvider } from '../providers/audit-service';
 import { NativeStorage } from '@ionic-native/native-storage';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { NativeStorage } from '@ionic-native/native-storage';
     BrowserModule,
     HttpModule,
     ChartsModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    HttpClientModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,7 +78,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     AuthServiceProvider,
     AuditServiceProvider,
     ConsumesApiProvider,
