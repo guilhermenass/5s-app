@@ -21,53 +21,13 @@
       
       <ion-card-content *ngIf="showAuditsSuccess">
         <ion-list>
-          <ion-item>
+          <ion-item *ngFor="let finish of concluded">
             <ion-avatar item-start>                     
               <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
             </ion-avatar>
-            <h2>Avaliação concluída</h2>
-            <h3>Concluída em 21/02/2018</h3>
-            <p>Sala 110 - Bloco A</p>
-          </ion-item>
-          <ion-item>
-            <ion-avatar item-start>                     
-              <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
-            </ion-avatar>
-            <h2>Avaliação concluída</h2>
-            <h3>Concluída em 21/02/2018</h3>
-            <p>Sala 110 - Bloco A</p>
-          </ion-item>
-          <ion-item>
-            <ion-avatar item-start>                     
-              <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
-            </ion-avatar>
-            <h2>Avaliação concluída</h2>
-            <h3>Concluída em 21/02/2018</h3>
-            <p>Sala 110 - Bloco A</p>
-          </ion-item>
-          <ion-item>
-            <ion-avatar item-start>                     
-              <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
-            </ion-avatar>
-            <h2>Avaliação concluída</h2>
-            <h3>Concluída em 21/02/2018</h3>
-            <p>Sala 110 - Bloco A</p>
-          </ion-item>
-          <ion-item>
-            <ion-avatar item-start>                     
-              <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
-            </ion-avatar>
-            <h2>Avaliação concluída</h2>
-            <h3>Concluída em 21/02/2018</h3>
-            <p>Sala 110 - Bloco A</p>
-          </ion-item>
-          <ion-item>
-            <ion-avatar item-start>                     
-              <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
-            </ion-avatar>
-            <h2>Avaliação concluída</h2>
-            <h3>Concluída em 21/02/2018</h3>
-            <p>Sala 110 - Bloco A</p>
+            <h2>{{finish.title}}</h2>
+            <h3>Concluída em {{audit.dueDate}}</h3>
+            <p>{{finish.Enviroment.name}}- {{finish.Enviroment.block}}</p>
           </ion-item>
         </ion-list>
 
@@ -83,30 +43,14 @@
       
       <ion-card-content *ngIf="showAuditsPending">   
         <ion-list>           
-          <ion-item (click)="goToAuditResume()">
+          <ion-item (click)="goToAuditResume()" *ngFor="let pend of pending">
             <ion-avatar item-start>                     
               <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
             </ion-avatar>
-            <h2>Avaliação pendente</h2>
-            <h3>Data limite 10/03/2018 a 15/03/2018</h3>
-            <p>Sala 105 - Bloco B</p>
+            <h2>{{pend.title}}</h2>
+            <h3>Data limite {{pend.createDate}} a {{pend.dueDate}}</h3>
+            <p>{{pend.Enviroment.name}}- {{pend.Enviroment.block}}</p>
           </ion-item>
-          <ion-item (click)="goToAuditResume()">
-            <ion-avatar item-start>                     
-              <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
-            </ion-avatar>
-            <h2>Avaliação pendente</h2>
-            <h3>Data limite 10/03/2018 a 15/03/2018</h3>
-            <p>Sala 105 - Bloco B</p>
-          </ion-item> 
-          <ion-item (click)="goToAuditResume()">
-            <ion-avatar item-start>                     
-              <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
-            </ion-avatar>
-            <h2>Avaliação pendente</h2>
-            <h3>Data limite 10/03/2018 a 15/03/2018</h3>
-            <p>Sala 105 - Bloco B</p>
-          </ion-item> 
         </ion-list>
       </ion-card-content>
       
@@ -120,13 +64,13 @@
       
       <ion-card-content *ngIf="showAuditsDelayed">                  
         <ion-list>
-          <ion-item (click)="goToAuditResume()">
+          <ion-item (click)="goToAuditResume()" *ngFor="let delay of delayed">
             <ion-avatar item-start>                     
               <ion-icon name="md-warning" style="color: #fa2500"></ion-icon>                      
             </ion-avatar>
-            <h2>Avaliação atrasada</h2>
-            <h3>Data limite 01/02/2018 a 05/02/2018</h3>
-            <p>Sala 101 - Bloco C</p>
+            <h2>{{delay.title}}</h2>
+            <h3>Data limite {{delay.createDate}} a {{delay.dueDate}}</h3>
+            <p>{{delay.Enviroment.name}}- {{delay.Enviroment.block}}</p>
           </ion-item> 
         </ion-list>
       </ion-card-content>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuditResumePage } from '../audit-resume/audit-resume'
 import { AuditServiceProvider } from '../../providers/audit-service';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Audit } from '../../model/audit';
 
 /**
  * Generated class for the DashboardPage page.
@@ -17,6 +18,21 @@ import { NativeStorage } from '@ionic-native/native-storage';
   templateUrl: 'dashboard.html'
 })
 export class  DashboardPage {
+  
+  // private id: number;
+  // private title: string;
+  // private status: string; 
+  // private createAt: Date;
+  // private initialDate: Date;
+  // private attachment: string;
+  // private note: number;
+  // private userId: number;
+  // private endDate: Date;
+  // private currentResponsible: number;
+  audits: Audit[];
+  pending: Audit[] = new Array<Audit>();
+  delayed: Audit[] = new Array<Audit>();
+  concluded: Audit[] = new Array<Audit>();
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -33,11 +49,20 @@ export class  DashboardPage {
 
   ionViewDidLoad() {
     this.auditService.search().subscribe(x => {
-      console.log('xxxx',x);
+      this.audits = x;
+      this.audits.forEach(audit =>{
+        if(audit.status.includes('CONCLUIDA')){
+          this.concluded.push(audit);
+        }else if(audit.status == "ATRASADA" ){
+          this.delayed.push(audit)
+        } else {
+          this.pending.push(audit);
+        }
+      });
     });
-    this.nativeStorage.getItem('myitem')
+    this.nativeStorage.getItem('token')
       .then(
-        data => console.log(data),
+        data => alert('token'+data.token),
         error => console.error(error)
       );
     console.log('ionViewDidLoad DashboardPage');
