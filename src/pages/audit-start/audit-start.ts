@@ -19,7 +19,7 @@ export class AuditStartPage {
 
   private mdThumbsUp = { color: 'DarkGray'};
   private mdThumbsDown = { color: 'DarkGray'};
-  private index = 1;
+  private index = 0;
   private auditList = [
     {
       question: "1 - O ambiente está devidamente limpo?",

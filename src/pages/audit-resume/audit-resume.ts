@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuditStartPage } from '../audit-start/audit-start';
+import { Audit } from '../../model/audit';
 
 /**
  * Generated class for the AuditResumePage page.
@@ -16,7 +17,9 @@ import { AuditStartPage } from '../audit-start/audit-start';
 })
 export class AuditResumePage {
 
+  audit: Audit;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.audit = navParams.get('audit');
   }
 
   ionViewDidLoad() {

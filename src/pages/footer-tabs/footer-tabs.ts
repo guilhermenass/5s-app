@@ -23,10 +23,7 @@ import { UserProfilePage } from '../user-profile/user-profile';
 export class FooterTabsPage {
 
   getDashboardByProfile(){
-    /*if( User.profile === UserType.ADMIN_APPRAISER   ) { return DashboardPage;  } 
-    if( User.profile ==  UserType.ADMIN_RESPONSIBLE ) { return ResponsibleDashboardPage; }
-*/
-    console.log('UserProfile '+User.profile);
+
     switch(User.profile) {
       case 2:
         return DashboardPage;

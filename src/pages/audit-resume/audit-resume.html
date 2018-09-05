@@ -24,8 +24,9 @@
           <ion-row>
               <ion-col col-12 col-sm-6>
                 <div text-left>
-                  <h2>Sala 101 - Bloco C</h2>
-                  <h3>Data limite 01/02/2018 a 05/02/2018</h3>
+                  <h2>{{audit.title}}</h2>
+                  <h2>{{audit.Enviroment.name}} - {{audit.Enviroment.block}}</h2>
+                  <h3>Data limite {{audit.createDate}} a {{audit.dueDate}}</h3>
                 </div>
                
                 <button ion-button (click)="gotToAuditStart()" col-12 color="secondary">

@@ -43,8 +43,8 @@ export class  DashboardPage {
   showAuditsDelayed = false;
   showAuditsPending = false;
 
-  goToAuditResume(){
-    this.navCtrl.push(AuditResumePage);
+  goToAuditResume(audit: Audit){
+    this.navCtrl.push(AuditResumePage,{audit:audit});
   }
 
   ionViewDidLoad() {
@@ -62,7 +62,7 @@ export class  DashboardPage {
     });
     this.nativeStorage.getItem('token')
       .then(
-        data => alert('token'+data.token),
+        data =>
         error => console.error(error)
       );
     console.log('ionViewDidLoad DashboardPage');
