@@ -18,12 +18,12 @@ export class AuditServiceProvider {
    O interceptor só funciona com httpclient. */
   constructor(public http: HttpClient) {}  
 
-    search(): Observable<Audit> {
+    search(): Observable<Array<Audit>> {
          return this.http.get(this.apiUrl)
             .map((response: Response) => 
             {
                 console.log('response',response);
-                return <Audit>response.json();
+                return response;
             })
             .catch(this.handleError);      
     }
@@ -38,6 +38,7 @@ export class AuditServiceProvider {
 */
     
     private handleError(error: Response) {
+        console.log('error ',error);
         return Observable.throw(error || 'Server error');
     }
 }

@@ -29,7 +29,10 @@ export class  DashboardPage {
   // private userId: number;
   // private endDate: Date;
   // private currentResponsible: number;
-  audits: Array<Audit>;
+  audits: Audit[];
+  pending: Audit[] = new Array<Audit>();
+  delayed: Audit[] = new Array<Audit>();
+  concluded: Audit[] = new Array<Audit>();
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -46,11 +49,20 @@ export class  DashboardPage {
 
   ionViewDidLoad() {
     this.auditService.search().subscribe(x => {
-      console.log('xxxx',x);
+      this.audits = x;
+      this.audits.forEach(audit =>{
+        if(audit.status.includes('CONCLUIDA')){
+          this.concluded.push(audit);
+        }else if(audit.status == "ATRASADA" ){
+          this.delayed.push(audit)
+        } else {
+          this.pending.push(audit);
+        }
+      });
     });
-    this.nativeStorage.getItem('myitem')
+    this.nativeStorage.getItem('token')
       .then(
-        data => console.log(data),
+        data => alert('token'+data.token),
         error => console.error(error)
       );
     console.log('ionViewDidLoad DashboardPage');
