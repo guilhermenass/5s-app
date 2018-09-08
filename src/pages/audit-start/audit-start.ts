@@ -1,6 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GenerateActionPlanPage } from '../generate-action-plan/generate-action-plan';
+import { QuestionServiceProvider } from '../../providers/question-service';
+import { Question } from '../../model/question';
+import { Answer } from '../../model/answer';
+import { Audit } from '../../model/audit';
 
 
 /**
@@ -17,32 +21,27 @@ import { GenerateActionPlanPage } from '../generate-action-plan/generate-action-
 })
 export class AuditStartPage {
 
+  private audit: Audit;
+  questions = new Array<Question>();
+  answers = new Array<Answer>();
+
   private mdThumbsUp = { color: 'DarkGray'};
   private mdThumbsDown = { color: 'DarkGray'};
   private index = 0;
-  private auditList = [
-    {
-      question: "1 - O ambiente está devidamente limpo?",
-      note: 0,
-      description: ""
-    },
-    {
-      question: "2 - O ambiente está devidamente organizado?",
-      note: 0,
-      description: ""
-    },
-    {
-      question: "3 - Os objetos no ambiente são realmente úteis?",
-      note: 0,
-      description: ""
-    }
-  ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              private questionService: QuestionServiceProvider,
+              public navParams: NavParams) {
+    this.audit = navParams.get('audit');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AuditStartPage');
+    this.questionService.findQuestionByEnvironmentTypeId(this.audit.Enviroment.enviroment_types_id).subscribe(x => {
+      this.questions = x;
+      x.forEach(question => {
+        this.answers.push(new Answer(question.questions_id));
+      })
+    });
   }
 
   @ViewChild('myInput') myInput: ElementRef;
@@ -52,27 +51,15 @@ export class AuditStartPage {
     this.myInput.nativeElement.style.height = this.myInput.nativeElement.scrollHeight + 'px';
   }
 
-  alternateColor(iconClick){
-    
-    if(iconClick == 'md-thumbs-up'){
-      this.mdThumbsUp.color   = 'green';
-      this.mdThumbsDown.color = 'DarkGray';
-    }else{
-      this.mdThumbsDown.color = 'red';
-      this.mdThumbsUp.color   = 'DarkGray';
-    }
-  
+  goNext(questionId:number){
+    this.index = questionId;
   }
 
-  goNext(){
-    this.index++;
-  }
-
-  goPrevious(){
-    this.index--;
+  goPrevious(i:number){
+    this.index = i;
   }
 
   viewActionPlan(){
-    this.navCtrl.push(GenerateActionPlanPage);
+    this.navCtrl.push(GenerateActionPlanPage, {answers:this.answers,questions: this.questions} );
   }
 }

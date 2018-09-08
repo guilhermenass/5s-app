@@ -1,7 +1,7 @@
 import { Enviroment } from "./enviroment";
 
 export class Audit {
-     enviroment: Enviroment;
+     Enviroment: Enviroment;
      id: number;
      title: string;
      status: string; 
@@ -22,7 +22,8 @@ export class Audit {
                 note: number,
                 userId: number,
                 endDate: Date,
-                currentResponsible: number) {
+                currentResponsible: number,
+                Enviroment: Enviroment) {
                     
     this.id = id;
     this.title = title;
@@ -34,6 +35,7 @@ export class Audit {
     this.userId = userId;
     this.endDate = endDate;
     this.currentResponsible = currentResponsible;
+    this.Enviroment = Enviroment;
     
     }
   }

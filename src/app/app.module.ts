@@ -30,6 +30,7 @@ import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { AuditServiceProvider } from '../providers/audit-service';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { QuestionServiceProvider } from '../providers/question-service';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     AuthServiceProvider,
     AuditServiceProvider,
+    QuestionServiceProvider,
     ConsumesApiProvider,
     NativeStorage
   ]

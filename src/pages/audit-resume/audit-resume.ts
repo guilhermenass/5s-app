@@ -27,7 +27,7 @@ export class AuditResumePage {
   }
 
   gotToAuditStart(){
-      this.navCtrl.push(AuditStartPage);
+    this.navCtrl.push(AuditStartPage,{audit:this.audit});
   }
 
 }
