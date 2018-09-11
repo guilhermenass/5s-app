@@ -42,8 +42,6 @@ export class GenerateActionPlanPage {
       }
     })
     this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
-    console.log('answer',this.answers);
-    console.log('questions',this.questions);
   }
 
   ionViewDidLoad() {
