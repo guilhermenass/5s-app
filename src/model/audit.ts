@@ -1,41 +1,26 @@
 import { Enviroment } from "./enviroment";
 
 export class Audit {
-     Enviroment: Enviroment;
      id: number;
      title: string;
      status: string; 
-     createAt: Date;
-     initialDate: Date;
-     attachment: string;
-     note: number;
-     userId: number;
-     endDate: Date;
-     currentResponsible: number;
+     initial_date: Date;
+     due_date: Date;
+     description: string;
 
     constructor(id: number, 
                 title: string,
                 status: string, 
-                createAt: Date,
-                initialDate: Date,
-                attachment: string,
-                note: number,
-                userId: number,
-                endDate: Date,
-                currentResponsible: number,
-                Enviroment: Enviroment) {
+                initial_date: Date,
+                due_date: Date,
+                description: string) {
                     
     this.id = id;
     this.title = title;
     this.status = status;
-    this.createAt = createAt;
-    this.initialDate = initialDate;
-    this.attachment = attachment;
-    this.note = note;
-    this.userId = userId;
-    this.endDate = endDate;
-    this.currentResponsible = currentResponsible;
-    this.Enviroment = Enviroment;
+    this.initial_date = initial_date;
+    this.due_date = due_date;
+    this.description = description;
     
     }
   }

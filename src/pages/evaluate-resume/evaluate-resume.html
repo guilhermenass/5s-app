@@ -1,5 +1,5 @@
 <!--
-  Generated template for the AuditsResumePage page.
+  Generated template for the EvaluatesResumePage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -24,14 +24,14 @@
           <ion-row>
               <ion-col col-12 col-sm-6>
                 <div text-left>
-                  <h2>{{audit.title}}</h2>
-                  <h2>{{audit.Enviroment.name}} - {{audit.Enviroment.block}}</h2>
-                  <h3>Data limite {{audit.createDate}} a {{audit.dueDate}}</h3>
+                  <h2>{{evaluate.audit.title}}</h2>
+                  <h2>{{evaluate.enviroment.name}} - {{evaluate.enviroment.block}}</h2>
+                  <h3>Data limite {{evaluate.audit.initial_date}} a {{evaluate.audit.due_date}}</h3>
                 </div>
                
-                <button ion-button (click)="gotToAuditStart()" col-12 color="secondary">
+                <button ion-button (click)="gotToEvaluateStart()" col-12 color="secondary">
                   <ion-label>
-                     Iniciar Auditoria
+                     Iniciar Avaliação
                   </ion-label>
                 </button>
               </ion-col>

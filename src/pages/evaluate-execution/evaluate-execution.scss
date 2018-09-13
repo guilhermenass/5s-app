@@ -1,4 +1,4 @@
-page-audit-start {
+page-evaluate-start {
    
     ion-card {
         position: relative;
@@ -9,7 +9,7 @@ page-audit-start {
         text-align: center;
     }
 
-    .audit-start-container{
+    .evaluate-start-container{
         margin: auto;
         margin-top: 15%
     }
@@ -19,14 +19,14 @@ page-audit-start {
         background: rgba(0, 128, 0, 0.83)
     }
 
-    .audit-start-description {
+    .evaluate-start-description {
         width: calc(100% - 10px);
         border: 1px solid rgba(142, 150, 142, 0.541);
         border-radius: 0;
         background: transparent;
     }
 
-    .audit-start-notes-icon{
+    .evaluate-start-notes-icon{
         font-size: 60px;
         font-size: 60px
     }

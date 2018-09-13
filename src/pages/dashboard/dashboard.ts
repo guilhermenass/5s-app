@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AuditResumePage } from '../audit-resume/audit-resume'
-import { AuditServiceProvider } from '../../providers/audit-service';
+import { EvaluateResumePage } from '../evaluate-resume/evaluate-resume'
+import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { Evaluate } from '../../model/evaluate';
+import { Enviroment } from '../../model/enviroment';
+import { User } from '../../model/user';
 import { Audit } from '../../model/audit';
 
 /**
@@ -29,72 +32,79 @@ export class  DashboardPage {
   // private userId: number;
   // private endDate: Date;
   // private currentResponsible: number;
-  audits: Audit[];
-  pending: Audit[] = new Array<Audit>();
-  delayed: Audit[] = new Array<Audit>();
-  concluded: Audit[] = new Array<Audit>();
+  evaluates: Evaluate[];
+  pending: Evaluate[] = new Array<Evaluate>();
+  delayed: Evaluate[] = new Array<Evaluate>();
+  concluded: Evaluate[] = new Array<Evaluate>();
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public auditService: AuditServiceProvider,
+              public evaluateService: EvaluateServiceProvider,
               private nativeStorage: NativeStorage) {}
 
-  showAuditsSuccess = false;
-  showAuditsDelayed = false;
-  showAuditsPending = false;
+  showEvaluatesSuccess = false;
+  showEvaluatesDelayed = false;
+  showEvaluatesPending = false;
 
-  goToAuditResume(audit: Audit){
-    this.navCtrl.push(AuditResumePage,{audit:audit});
+  goToEvaluateResume(evaluate: Evaluate){
+    this.navCtrl.push(EvaluateResumePage,{evaluate:evaluate});
   }
 
   ionViewDidLoad() {
-    this.auditService.search().subscribe(x => {
-      this.audits = x;
-      this.audits.forEach(audit =>{
-        if(audit.status.includes('CONCLUIDA')){
-          this.concluded.push(audit);
-        }else if(audit.status == "ATRASADA" ){
-          this.delayed.push(audit)
+    this.evaluateService.search().subscribe(x => {
+      this.evaluates = x;
+      this.evaluates.forEach(evaluate =>{
+        if(evaluate.status.includes('CONCLUIDA')){
+          this.concluded.push(evaluate);
+        }else if(evaluate.status == "ATRASADA" ){
+          this.delayed.push(evaluate)
         } else {
-          this.pending.push(audit);
+          this.pending.push(evaluate);
         }
       });
     });
+
     this.nativeStorage.getItem('token')
-      .then(
-        data =>
-        error => console.error(error)
-      );
-    console.log('ionViewDidLoad DashboardPage');
+    .then(
+      data =>
+      error => console.error(error)
+    );
+    this.pending.push(new Evaluate(1,
+                                   new Enviroment(36,'C','',36,'Teste',1,1),
+                                   new Audit(1,'Auditoria Setembro','PENDENTE', new Date(), new Date(),''),
+                                   new Date(),
+                                   'PENDENTE',
+                                   new User()));
+    console.log('ionViewDidLoad DashboardPage',this.pending);
   }
 
-  changeShowAuditSuccess(){
-    if(!this.showAuditsSuccess){
-      this.showAuditsSuccess = true;
-      this.showAuditsDelayed = false;
-      this.showAuditsPending = false;
+  changeShowEvaluateSuccess(){
+    if(!this.showEvaluatesSuccess){
+      this.showEvaluatesSuccess = true;
+      this.showEvaluatesDelayed = false;
+      this.showEvaluatesPending = false;
     } else {
-      this.showAuditsSuccess = false;      
+      this.showEvaluatesSuccess = false;      
     }
   }
 
-  changeShowAuditDelayed(){
-    if(!this.showAuditsDelayed){
-      this.showAuditsDelayed = true;
-      this.showAuditsSuccess = false;
-      this.showAuditsPending = false;
+  changeShowEvaluateDelayed(){
+    if(!this.showEvaluatesDelayed){
+      this.showEvaluatesDelayed = true;
+      this.showEvaluatesSuccess = false;
+      this.showEvaluatesPending = false;
     } else {
-      this.showAuditsDelayed = false;      
+      this.showEvaluatesDelayed = false;      
     }
   }
 
-  changeShowAuditPending(){
-    if(!this.showAuditsPending){
-      this.showAuditsPending = true;
-      this.showAuditsDelayed = false;
-      this.showAuditsSuccess = false;
+  changeShowEvaluatePending(){
+    if(!this.showEvaluatesPending){
+      this.showEvaluatesPending = true;
+      this.showEvaluatesDelayed = false;
+      this.showEvaluatesSuccess = false;
     } else {
-      this.showAuditsPending = false;      
+      this.showEvaluatesPending = false;      
     }
   }
 

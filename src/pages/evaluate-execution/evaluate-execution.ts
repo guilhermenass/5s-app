@@ -4,11 +4,10 @@ import { GenerateActionPlanPage } from '../generate-action-plan/generate-action-
 import { QuestionServiceProvider } from '../../providers/question-service';
 import { Question } from '../../model/question';
 import { Answer } from '../../model/answer';
-import { Audit } from '../../model/audit';
-
+import { Evaluate } from '../../model/evaluate';
 
 /**
- * Generated class for the AuditStartPage page.
+ * Generated class for the EvaluateExecutionPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -16,12 +15,12 @@ import { Audit } from '../../model/audit';
 
 @IonicPage()
 @Component({
-  selector: 'page-audit-start',
-  templateUrl: 'audit-start.html',
+  selector: 'page-evaluate-execution',
+  templateUrl: 'evaluate-execution.html',
 })
-export class AuditStartPage {
+export class EvaluateExecutionPage {
 
-  private audit: Audit;
+  private evaluate: Evaluate;
   questions = new Array<Question>();
   answers = new Array<Answer>();
 
@@ -32,11 +31,11 @@ export class AuditStartPage {
   constructor(public navCtrl: NavController,
               private questionService: QuestionServiceProvider,
               public navParams: NavParams) {
-    this.audit = navParams.get('audit');
+    this.evaluate = navParams.get('evaluate');
   }
 
   ionViewDidLoad() {
-    this.questionService.findQuestionByEnvironmentTypeId(this.audit.Enviroment.enviroment_types_id).subscribe(x => {
+    this.questionService.findQuestionByEnvironmentTypeId(this.evaluate.enviroment.enviroment_types_id).subscribe(x => {
       this.questions = x;
       x.forEach(question => {
         this.answers.push(new Answer(question.questions_id));

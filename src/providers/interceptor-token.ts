@@ -13,18 +13,19 @@ export class TokenInterceptor implements HttpInterceptor {
  
   constructor(private nativeStorage: NativeStorage, private alertCtrl: AlertController) { }
  
+  token: string;
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token;
+  
+
     this.nativeStorage.getItem('token')
     .then(
-      data => { token = data},
+      data => { this.token = data;},
       error => console.error(error)
     );
-
     request = request.clone({
       setHeaders: {
         /* Adicionar no lugar de teste, o valor do token */
-        Authorization: `Bearer ${token}` 
+        Authorization: `Bearer ${this.token}` 
         }
     });
 

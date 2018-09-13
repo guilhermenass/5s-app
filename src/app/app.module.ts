@@ -15,9 +15,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ResponsibleDashboardPage } from '../pages/responsible-dashboard/responsible-dashboard';
 import { ExecuteActionPlanPage } from '../pages/execute-action-plan/execute-action-plan';
 import { FooterTabsPage } from '../pages/footer-tabs/footer-tabs';
-import { AuditsPage } from '../pages/audits/audits';
-import { AuditResumePage } from '../pages/audit-resume/audit-resume'
-import { AuditStartPage } from '../pages/audit-start/audit-start';
+
 import { GenerateActionPlanPage } from '../pages/generate-action-plan/generate-action-plan';
 import { UserConfigPage } from '../pages/user-config/user-config';  
 import { MainPage } from '../pages/main/main';
@@ -28,9 +26,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
-import { AuditServiceProvider } from '../providers/audit-service';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { QuestionServiceProvider } from '../providers/question-service';
+import { AuditsPage } from '../pages/audits/audits';
+import { EvaluateResumePage } from '../pages/evaluate-resume/evaluate-resume';
+import { EvaluateExecutionPage } from '../pages/evaluate-execution/evaluate-execution';
+import { EvaluateServiceProvider } from '../providers/evaluate-service';
 
 
 @NgModule({
@@ -41,8 +42,8 @@ import { QuestionServiceProvider } from '../providers/question-service';
     ResponsibleDashboardPage,
     FooterTabsPage,
     AuditsPage,
-    AuditResumePage,
-    AuditStartPage,
+    EvaluateResumePage,
+    EvaluateExecutionPage,
     GenerateActionPlanPage,
     ExecuteActionPlanPage,
     UserConfigPage,
@@ -68,10 +69,10 @@ import { QuestionServiceProvider } from '../providers/question-service';
     ExecuteActionPlanPage,
     FooterTabsPage,
     AuditsPage,
-    AuditStartPage,
+    EvaluateExecutionPage,
     UserConfigPage,
     UserProfilePage,
-    AuditResumePage,
+    EvaluateResumePage,
     GenerateActionPlanPage,
     MainPage,
     ExpandableComponent
@@ -82,7 +83,7 @@ import { QuestionServiceProvider } from '../providers/question-service';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     AuthServiceProvider,
-    AuditServiceProvider,
+    EvaluateServiceProvider,
     QuestionServiceProvider,
     ConsumesApiProvider,
     NativeStorage
