@@ -3,7 +3,6 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, Htt
 import { Injectable } from '@angular/core';
  
 import { Observable } from 'rxjs';
-import { _throw } from 'rxjs/observable/throw';
 import { mergeMap } from 'rxjs/operator/mergeMap';
 import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -11,7 +10,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
  
-  constructor(private nativeStorage: NativeStorage, private alertCtrl: AlertController) { }
+  constructor(private nativeStorage: NativeStorage) { }
  
   token: string;
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

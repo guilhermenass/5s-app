@@ -24,8 +24,6 @@ export class EvaluateExecutionPage {
   questions = new Array<Question>();
   answers = new Array<Answer>();
 
-  private mdThumbsUp = { color: 'DarkGray'};
-  private mdThumbsDown = { color: 'DarkGray'};
   private index = 0;
 
   constructor(public navCtrl: NavController,

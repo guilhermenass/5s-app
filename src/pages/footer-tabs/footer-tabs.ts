@@ -4,8 +4,6 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ResponsibleDashboardPage } from '../responsible-dashboard/responsible-dashboard';
 import { UserConfigPage } from '../user-config/user-config'
 import { User } from '../../model/user';
-import { UserType } from '../../enums/userType';
-import { LoginPage } from '../login/login';
 import { UserProfilePage } from '../user-profile/user-profile';
 
 /**
