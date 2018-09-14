@@ -26,7 +26,7 @@
               <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
             </ion-avatar>
             <h2>{{finish.title}}</h2>
-            <h3>Concluída em {{audit.dueDate}}</h3>
+            <h3>Concluída em {{audit.due_date}}</h3>
             <p>{{finish.Enviroment.name}}- {{finish.Enviroment.block}}</p>
           </ion-item>
         </ion-list>
@@ -48,7 +48,7 @@
               <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
             </ion-avatar>
             <h2>{{pend.title}}</h2>
-            <h3>Data limite {{pend.createDate}} a {{pend.dueDate}}</h3>
+            <h3>Data limite {{pend.initial_date}} a {{pend.due_date}}</h3>
             <p>{{pend.Enviroment.name}}- {{pend.Enviroment.block}}</p>
           </ion-item>
         </ion-list>
@@ -69,7 +69,7 @@
               <ion-icon name="md-warning" style="color: #fa2500"></ion-icon>                      
             </ion-avatar>
             <h2>{{delay.title}}</h2>
-            <h3>Data limite {{delay.createDate}} a {{delay.dueDate}}</h3>
+            <h3>Data limite {{delay.initial_date}} a {{delay.due_date}}</h3>
             <p>{{delay.Enviroment.name}}- {{delay.Enviroment.block}}</p>
           </ion-item> 
         </ion-list>
