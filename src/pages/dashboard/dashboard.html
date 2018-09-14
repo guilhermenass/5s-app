@@ -25,9 +25,8 @@
             <ion-avatar item-start>                     
               <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
             </ion-avatar>
-            <h2>{{finish.title}}</h2>
-            <h3>Concluída em {{finish.dueDate}}</h3>
-            <p>{{finish.Enviroment.name}}- {{finish.Enviroment.block}}</p>
+            <h2>{{finish.audit.title}} - {{finish.enviroment.name}}- {{finish.enviroment.block}}</h2>
+            <h3>Concluída em {{finish.audit.due_date}}</h3>
           </ion-item>
           <p *ngIf="concluded.length == 0"> Nenhuma inspeção concluida</p>            
         </ion-list>
@@ -49,7 +48,7 @@
               <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
             </ion-avatar>
             <h2> {{pend.audit.title}} - {{pend.enviroment.name}} - {{pend.enviroment.block}}</h2>
-            <h3>Data limite {{pend.createDate}} a {{pend.dueDate}}</h3>
+            <h3>Data limite {{pend.audit.initial_date}} a {{pend.audit.due_date}}</h3>
           </ion-item>
           <p *ngIf="pending.length == 0"> Nenhuma Inspeção Pendente</p>
         </ion-list>
@@ -69,9 +68,8 @@
             <ion-avatar item-start>                     
               <ion-icon name="md-warning" style="color: #fa2500"></ion-icon>                      
             </ion-avatar>
-            <h2>{{delay.title}}</h2>
-            <h3>Data limite {{delay.createDate}} a {{delay.dueDate}}</h3>
-            <p>{{delay.Enviroment.name}}- {{delay.Enviroment.block}}</p>
+            <h2>{{delay.audit.title}} - {{delay.enviroment.name}}- {{delay.enviroment.block}}</h2>
+            <h3>Data limite {{delay.audit.initial_date}} a {{delay.audit.due_date}}</h3>
           </ion-item> 
           <p *ngIf="delayed.length == 0"> Nenhuma inspeção atrasada</p>            
           

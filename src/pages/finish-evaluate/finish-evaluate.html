@@ -18,7 +18,7 @@
     <ion-grid>
       <ion-card>
         <ion-card-header>
-          Gerar Plano de Ação
+          Saúde do ambiente
         </ion-card-header>
         <ion-card-content>
           <ion-row>
@@ -40,9 +40,14 @@
                   </div>
               </ion-col>
           </ion-row>
-          <button ion-button col-12 color="secondary">
+          <button *ngIf="answerNonCompliance > 0" ion-button col-12 color="secondary" (click)="generateActionPlan()">
+            <ion-label>
+                Gerar Plano de Ação
+            </ion-label>
+          </button>
+          <button *ngIf="answerNonCompliance == 0" ion-button col-12 color="secondary" (click)="finishEvaluate()">
               <ion-label>
-                 Gerar Plano de Ação
+                  Finalizar avaliação
               </ion-label>
             </button>
         </ion-card-content>

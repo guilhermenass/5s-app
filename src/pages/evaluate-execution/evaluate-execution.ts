@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { GenerateActionPlanPage } from '../generate-action-plan/generate-action-plan';
+import { FinishEvaluatePage } from '../finish-evaluate/finish-evaluate';
 import { QuestionServiceProvider } from '../../providers/question-service';
 import { Question } from '../../model/question';
 import { Answer } from '../../model/answer';
@@ -56,7 +56,7 @@ export class EvaluateExecutionPage {
     this.index = i;
   }
 
-  viewActionPlan(){
-    this.navCtrl.push(GenerateActionPlanPage, {answers:this.answers,questions: this.questions} );
+  finishEvaluate(){
+    this.navCtrl.push(FinishEvaluatePage, {answers:this.answers,questions: this.questions, evaluateId: this.evaluate.id} );
   }
 }

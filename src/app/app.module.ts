@@ -16,7 +16,7 @@ import { ResponsibleDashboardPage } from '../pages/responsible-dashboard/respons
 import { ExecuteActionPlanPage } from '../pages/execute-action-plan/execute-action-plan';
 import { FooterTabsPage } from '../pages/footer-tabs/footer-tabs';
 
-import { GenerateActionPlanPage } from '../pages/generate-action-plan/generate-action-plan';
+import { FinishEvaluatePage } from '../pages/finish-evaluate/finish-evaluate';
 import { UserConfigPage } from '../pages/user-config/user-config';  
 import { MainPage } from '../pages/main/main';
 
@@ -44,7 +44,7 @@ import { EvaluateServiceProvider } from '../providers/evaluate-service';
     AuditsPage,
     EvaluateResumePage,
     EvaluateExecutionPage,
-    GenerateActionPlanPage,
+    FinishEvaluatePage,
     ExecuteActionPlanPage,
     UserConfigPage,
     UserProfilePage,
@@ -73,7 +73,7 @@ import { EvaluateServiceProvider } from '../providers/evaluate-service';
     UserConfigPage,
     UserProfilePage,
     EvaluateResumePage,
-    GenerateActionPlanPage,
+    FinishEvaluatePage,
     MainPage,
     ExpandableComponent
   ],

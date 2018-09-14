@@ -1,4 +1,4 @@
-page-evaluate-start {
+page-evaluate-execution {
    
     ion-card {
         position: relative;
@@ -9,7 +9,7 @@ page-evaluate-start {
         text-align: center;
     }
 
-    .evaluate-start-container{
+    .evaluate-execution-container{
         margin: auto;
         margin-top: 15%
     }
@@ -19,14 +19,14 @@ page-evaluate-start {
         background: rgba(0, 128, 0, 0.83)
     }
 
-    .evaluate-start-description {
+    .evaluate-execution-description {
         width: calc(100% - 10px);
         border: 1px solid rgba(142, 150, 142, 0.541);
         border-radius: 0;
         background: transparent;
     }
 
-    .evaluate-start-notes-icon{
+    .evaluate-execution-notes-icon{
         font-size: 60px;
         font-size: 60px
     }

@@ -75,6 +75,22 @@ export class  DashboardPage {
                                    new Date(),
                                    'PENDENTE',
                                    new User()));
+
+    this.concluded.push(new Evaluate(1,
+                                  new Enviroment(36,'C','',36,'Teste',1,1),
+                                  new Audit(1,'Auditoria Setembro','PENDENTE', new Date(), new Date(),''),
+                                  new Date(),
+                                  'PENDENTE',
+                                  new User()));
+
+    this.delayed.push(new Evaluate(1,
+                                    new Enviroment(36,'C','',36,'Teste',1,1),
+                                    new Audit(1,'Auditoria Setembro','PENDENTE', new Date(), new Date(),''),
+                                    new Date(),
+                                    'PENDENTE',
+                                    new User()));
+ 
+
     console.log('ionViewDidLoad DashboardPage',this.pending);
   }
 
