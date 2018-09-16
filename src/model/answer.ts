@@ -1,10 +1,9 @@
 export class Answer {
-    private id: number;
-    private questionId: number;
-    private audit_id: number;
+     id: number;
+     questionId: number;
+     status: boolean;
     
-    constructor(questionId: number = null, auditId:number = null){
+    constructor(questionId: number = null){
         this.questionId = questionId;
-        this.audit_id = auditId;
     }
   }

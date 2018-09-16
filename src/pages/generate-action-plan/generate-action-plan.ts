@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Answer } from '../../model/answer';
+import { Question } from '../../model/question';
 
 /**
  * Generated class for the GenerateActionPlanPage page.
@@ -15,12 +17,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class GenerateActionPlanPage {
 
-  public doughnutChartLabels:string[] = ['ATENDE', 'NÃO ATENDE'];
-  public doughnutChartData:number[] = [2, 1];
+  answers: Array<Answer>;
+  questions: Array<Question>;
+
+  answerNonCompliance = 0;
+  answerCompliance = 0;
+  
+
+  public doughnutChartLabels:string[] = ['CONFORME', 'INCONFORME'];
+  public doughnutChartData:number[] = [0,0];
   public doughnutChartType:string = 'doughnut';
   public chartColors: any[] = [{ backgroundColor:["green", "red"] }];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.answers = navParams.get('answers');
+    this.questions = navParams.get('questions');
+
+    this.answers.forEach(answer =>
+    { 
+      if(answer.status){
+        this.answerCompliance++;
+      }else{
+        this.answerNonCompliance++;
+      }
+    })
+    this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
   }
 
   ionViewDidLoad() {

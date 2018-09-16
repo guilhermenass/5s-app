@@ -23,9 +23,7 @@
         <ion-card-content>
           <ion-row>
               <ion-col col-12 col-sm-6> 
-                <h2 style="color: green">1 - O ambiente está devidamente limpo?</h2>
-                <h2 style="color: green">2 - O ambiente está devidamente organizado?</h2>
-                <h2 style="color: red">3 - Os objetos no ambiente são realmente úteis?</h2>
+                <h2 *ngFor="let question of questions; let i = index" [style.color]="answers[i].status == true ? 'green' : 'red'" >{{i}} - {{question.Question.title}}</h2>
               </ion-col>
           </ion-row>
           <ion-row>

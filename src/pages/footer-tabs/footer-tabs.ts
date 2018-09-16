@@ -4,8 +4,6 @@ import { DashboardPage } from '../dashboard/dashboard';
 import { ResponsibleDashboardPage } from '../responsible-dashboard/responsible-dashboard';
 import { UserConfigPage } from '../user-config/user-config'
 import { User } from '../../model/user';
-import { UserType } from '../../enums/userType';
-import { LoginPage } from '../login/login';
 import { UserProfilePage } from '../user-profile/user-profile';
 
 /**
@@ -23,10 +21,7 @@ import { UserProfilePage } from '../user-profile/user-profile';
 export class FooterTabsPage {
 
   getDashboardByProfile(){
-    /*if( User.profile === UserType.ADMIN_APPRAISER   ) { return DashboardPage;  } 
-    if( User.profile ==  UserType.ADMIN_RESPONSIBLE ) { return ResponsibleDashboardPage; }
-*/
-    console.log('UserProfile '+User.profile);
+
     switch(User.profile) {
       case 2:
         return DashboardPage;

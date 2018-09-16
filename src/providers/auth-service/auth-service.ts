@@ -37,7 +37,6 @@ export class AuthServiceProvider {
     }
 
     forgotPassword(email: string) {
-      console.log("errouuuu")
       return new Promise((resolve, reject) => {
           let headers = new Headers();
           headers.append('Content-Type', 'application/json');
