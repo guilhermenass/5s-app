@@ -4,14 +4,7 @@ import { FinishEvaluatePage } from '../finish-evaluate/finish-evaluate';
 import { QuestionServiceProvider } from '../../providers/question-service';
 import { Question } from '../../model/question';
 import { Answer } from '../../model/answer';
-import { Evaluate } from '../../model/evaluate';
-
-/**
- * Generated class for the EvaluateExecutionPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 
 @IonicPage()
 @Component({
@@ -20,7 +13,7 @@ import { Evaluate } from '../../model/evaluate';
 })
 export class EvaluateExecutionPage {
 
-  private evaluate: Evaluate;
+  private evaluate: EvaluationExecutionDto;
   questions = new Array<Question>();
   answers = new Array<Answer>();
 
@@ -33,10 +26,10 @@ export class EvaluateExecutionPage {
   }
 
   ionViewDidLoad() {
-    this.questionService.findQuestionByEnvironmentTypeId(this.evaluate.enviroment.enviroment_types_id).subscribe(x => {
+    this.questionService.findQuestionByEnvironmentTypeId(this.evaluate.enviroment_type_id).subscribe(x => {
       this.questions = x;
       x.forEach(question => {
-        this.answers.push(new Answer(question.questions_id));
+        this.answers.push(new Answer(this.evaluate.id, question.questions_id));
       })
     });
   }

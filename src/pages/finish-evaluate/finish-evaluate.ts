@@ -4,13 +4,6 @@ import { Answer } from '../../model/answer';
 import { Question } from '../../model/question';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 
-/**
- * Generated class for the FinishEvaluatePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-finish-evaluate',
@@ -59,20 +52,23 @@ export class FinishEvaluatePage {
 
   // events
   public chartClicked(e:any):void {
-    
   }
 
   public chartHovered(e:any):void {
-
   }
 
   generateActionPlan(){
-    alert('inconformidades encontradas');
+    this.evaluateService.finishEvaluate(this.evaluateId,this.answers)
+      .subscribe(res => {
+        console.log('res', res)
+      });
   }
 
   finishEvaluate(){
-    alert('palavraaaa')
-    this.evaluateService.finishEvaluate(this.evaluateId,this.answers);
+    this.evaluateService.finishEvaluate(this.evaluateId,this.answers)
+      .subscribe(res => {
+        console.log('res', res)
+      });
 
   }
 }

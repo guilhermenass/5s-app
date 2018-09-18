@@ -7,6 +7,7 @@ import { Evaluate } from '../../model/evaluate';
 import { Enviroment } from '../../model/enviroment';
 import { User } from '../../model/user';
 import { Audit } from '../../model/audit';
+import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 
 /**
  * Generated class for the DashboardPage page.
@@ -32,10 +33,10 @@ export class  DashboardPage {
   // private userId: number;
   // private endDate: Date;
   // private currentResponsible: number;
-  evaluates: Evaluate[];
-  pending: Evaluate[] = new Array<Evaluate>();
-  delayed: Evaluate[] = new Array<Evaluate>();
-  concluded: Evaluate[] = new Array<Evaluate>();
+  evaluates: EvaluationExecutionDto[];
+  pending: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
+  delayed: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
+  concluded: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -54,44 +55,21 @@ export class  DashboardPage {
     this.evaluateService.search().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
-        if(evaluate.status.includes('CONCLUIDA')){
+        if(evaluate.status === 1){
           this.concluded.push(evaluate);
-        }else if(evaluate.status == "ATRASADA" ){
-          this.delayed.push(evaluate)
+        }else if(evaluate.status === 0){
+          this.pending.push(evaluate)
         } else {
-          this.pending.push(evaluate);
+          this.delayed.push(evaluate);
         }
       });
     });
 
     this.nativeStorage.getItem('token')
-    .then(
-      data =>
-      error => console.error(error)
-    );
-    this.pending.push(new Evaluate(1,
-                                   new Enviroment(36,'C','',36,'Teste',1,1),
-                                   new Audit(1,'Auditoria Setembro','PENDENTE', new Date(), new Date(),''),
-                                   new Date(),
-                                   'PENDENTE',
-                                   new User()));
-
-    this.concluded.push(new Evaluate(1,
-                                  new Enviroment(36,'C','',36,'Teste',1,1),
-                                  new Audit(1,'Auditoria Setembro','PENDENTE', new Date(), new Date(),''),
-                                  new Date(),
-                                  'PENDENTE',
-                                  new User()));
-
-    this.delayed.push(new Evaluate(1,
-                                    new Enviroment(36,'C','',36,'Teste',1,1),
-                                    new Audit(1,'Auditoria Setembro','PENDENTE', new Date(), new Date(),''),
-                                    new Date(),
-                                    'PENDENTE',
-                                    new User()));
- 
-
-    console.log('ionViewDidLoad DashboardPage',this.pending);
+      .then(
+        data =>
+        error => console.error(error)
+      );
   }
 
   changeShowEvaluateSuccess(){
