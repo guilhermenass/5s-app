@@ -25,9 +25,9 @@
             <ion-avatar item-start>                     
               <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
             </ion-avatar>
-            <h2>{{finish.title}}</h2>
-            <h3>Concluída em {{audit.due_date}}</h3>
-            <p>{{finish.Enviroment.name}}- {{finish.Enviroment.block}}</p>
+
+            <h2>{{finish.audit_title}} - {{finish.enviroment_name}}- {{finish.enviroment_block}}</h2>
+            <h3>Concluída em {{finish.audit_due_date}}</h3>
           </ion-item>
           <p *ngIf="concluded.length == 0"> Nenhuma inspeção concluida</p>            
         </ion-list>
@@ -48,19 +48,10 @@
             <ion-avatar item-start>                     
               <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
             </ion-avatar>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <h2>{{pend.title}}</h2>
-            <h3>Data limite {{pend.initial_date}} a {{pend.due_date}}</h3>
-            <p>{{pend.Enviroment.name}}- {{pend.Enviroment.block}}</p>
-=======
-            <h2> {{pend.audit.title}} - {{pend.enviroment.name}} - {{pend.enviroment.block}}</h2>
-            <h3>Data limite {{pend.createDate}} a {{pend.dueDate}}</h3>
->>>>>>> e380ba0f62c3f048a98961581d0325439ad641f3
-=======
-            <h2> {{pend.audit.title}} - {{pend.enviroment.name}} - {{pend.enviroment.block}}</h2>
-            <h3>Data limite {{pend.createDate}} a {{pend.dueDate}}</h3>
->>>>>>> e380ba0f62c3f048a98961581d0325439ad641f3
+
+            <h2> {{pend.audit_title}} - {{pend.enviroment_name}} - {{pend.enviroment_block}}</h2>
+            <h3>Data limite {{pend.audit_initial_date}} a {{pend.audit_due_date}}</h3>
+
           </ion-item>
           <p *ngIf="pending.length == 0"> Nenhuma Inspeção Pendente</p>
         </ion-list>
@@ -80,9 +71,9 @@
             <ion-avatar item-start>                     
               <ion-icon name="md-warning" style="color: #fa2500"></ion-icon>                      
             </ion-avatar>
-            <h2>{{delay.title}}</h2>
-            <h3>Data limite {{delay.initial_date}} a {{delay.due_date}}</h3>
-            <p>{{delay.Enviroment.name}}- {{delay.Enviroment.block}}</p>
+            <h2>{{delay.audit_title}} - {{delay.enviroment_name}} - {{delay.enviroment_block}}</h2>
+            <h3>Data limite {{delay.audit_initial_date}} a {{delay.audit_due_date}}</h3>
+
           </ion-item> 
           <p *ngIf="delayed.length == 0"> Nenhuma inspeção atrasada</p>            
           

@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EvaluateExecutionPage } from '../evaluate-execution/evaluate-execution';
-import { Evaluate } from '../../model/evaluate';
-
-/**
- * Generated class for the EvaluateResumePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 
 @IonicPage()
 @Component({
@@ -17,7 +10,7 @@ import { Evaluate } from '../../model/evaluate';
 })
 export class EvaluateResumePage {
 
-  evaluate: Evaluate;
+  evaluate: EvaluationExecutionDto;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.evaluate = navParams.get('evaluate');
   }

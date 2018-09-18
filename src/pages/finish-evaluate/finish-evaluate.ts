@@ -2,26 +2,24 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Answer } from '../../model/answer';
 import { Question } from '../../model/question';
-
-/**
- * Generated class for the GenerateActionPlanPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 
 @IonicPage()
 @Component({
-  selector: 'page-generate-action-plan',
-  templateUrl: 'generate-action-plan.html',
+  selector: 'page-finish-evaluate',
+  templateUrl: 'finish-evaluate.html',
 })
-export class GenerateActionPlanPage {
+export class FinishEvaluatePage {
 
   answers: Array<Answer>;
   questions: Array<Question>;
+  evaluateId: number;
 
-  answerNonCompliance = 0;
+  /**
+   * variáveis usadas para fazer a contagem de conformidades e inconformidades
+   */
   answerCompliance = 0;
+  answerNonCompliance = 0;
   
 
   public doughnutChartLabels:string[] = ['CONFORME', 'INCONFORME'];
@@ -29,9 +27,12 @@ export class GenerateActionPlanPage {
   public doughnutChartType:string = 'doughnut';
   public chartColors: any[] = [{ backgroundColor:["green", "red"] }];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public evaluateService: EvaluateServiceProvider) {
     this.answers = navParams.get('answers');
     this.questions = navParams.get('questions');
+    this.evaluateId = navParams.get('evaluateId')
 
     this.answers.forEach(answer =>
     { 
@@ -45,16 +46,29 @@ export class GenerateActionPlanPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad GenerateActionPlanPage');
+    console.log('ionViewDidLoad FinishEvaluatePage');
   }
 
 
   // events
   public chartClicked(e:any):void {
-
   }
 
   public chartHovered(e:any):void {
+  }
+
+  generateActionPlan(){
+    this.evaluateService.finishEvaluate(this.evaluateId,this.answers)
+      .subscribe(res => {
+        console.log('res', res)
+      });
+  }
+
+  finishEvaluate(){
+    this.evaluateService.finishEvaluate(this.evaluateId,this.answers)
+      .subscribe(res => {
+        console.log('res', res)
+      });
 
   }
 }
