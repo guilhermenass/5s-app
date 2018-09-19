@@ -36,7 +36,7 @@
                       </ion-col>
                     </ion-row>
                     <ion-item>
-                      <textarea #myInput class="evaluate-execution-description" rows="3" maxLength="200" (keyup)="resize()" placeholder="Comentários"></textarea>                          
+                      <textarea #myInput class="evaluate-execution-comments" name="comments" [(ngModel)]="answers[i].comments" rows="3" maxLength="200" (keyup)="resize()" placeholder="Comentários"></textarea>                          
                     </ion-item> 
                     <ion-row>
                       <div col-6>
