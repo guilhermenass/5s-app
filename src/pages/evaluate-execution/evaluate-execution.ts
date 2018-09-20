@@ -50,6 +50,7 @@ export class EvaluateExecutionPage {
   }
 
   finishEvaluate(){
-    this.navCtrl.push(FinishEvaluatePage, {answers:this.answers,questions: this.questions, evaluateId: this.evaluate.id} );
+    console.log(this.answers);
+    // this.navCtrl.push(FinishEvaluatePage, {answers:this.answers,questions: this.questions, evaluateId: this.evaluate.id} );
   }
 }

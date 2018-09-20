@@ -3,8 +3,9 @@ export class Answer {
      evaluateId: number;
      questionId: number;
      status: boolean;
+     comments: string;
     
-    constructor(evaluateId:number, questionId: number = null){
+    constructor(evaluateId: number, questionId: number){
       this.evaluateId = evaluateId;
       this.questionId = questionId;
     }

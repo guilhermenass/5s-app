@@ -15,10 +15,6 @@ export class EvaluateResumePage {
     this.evaluate = navParams.get('evaluate');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EvaluateResumePage');
-  }
-
   gotToEvaluateStart(){
     this.navCtrl.push(EvaluateExecutionPage,{evaluate:this.evaluate});
   }

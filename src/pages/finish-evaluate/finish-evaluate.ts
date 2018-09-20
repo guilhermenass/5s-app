@@ -45,11 +45,6 @@ export class FinishEvaluatePage {
     this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FinishEvaluatePage');
-  }
-
-
   // events
   public chartClicked(e:any):void {
   }
@@ -58,14 +53,14 @@ export class FinishEvaluatePage {
   }
 
   generateActionPlan(){
-    this.evaluateService.finishEvaluate(this.evaluateId,this.answers)
+    this.evaluateService.finishEvaluate(this.answers)
       .subscribe(res => {
         console.log('res', res)
       });
   }
 
   finishEvaluate(){
-    this.evaluateService.finishEvaluate(this.evaluateId,this.answers)
+    this.evaluateService.finishEvaluate(this.answers)
       .subscribe(res => {
         console.log('res', res)
       });
