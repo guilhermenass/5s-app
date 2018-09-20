@@ -64,12 +64,6 @@ export class  DashboardPage {
         }
       });
     });
-
-    this.nativeStorage.getItem('token')
-      .then(
-        data =>
-        error => console.error(error)
-      );
   }
 
   changeShowEvaluateSuccess(){

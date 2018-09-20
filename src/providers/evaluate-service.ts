@@ -13,7 +13,7 @@ import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
 @Injectable()
 export class EvaluateServiceProvider {
 
-  apiUrl = 'https://api-senai5s.herokuapp.com/evaluations';
+    apiUrl = 'https://api-senai5s.herokuapp.com/evaluations';
 
   constructor(public http: HttpClient) {}  
 
@@ -26,7 +26,7 @@ export class EvaluateServiceProvider {
             .catch(this.handleError);      
     }
 
-   finishEvaluate(evaluateId: number, answers: Array<Answer>) {
+   finishEvaluate(answers: Array<Answer>) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type':  'application/json'
