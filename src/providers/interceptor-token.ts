@@ -17,16 +17,17 @@ export class TokenInterceptor implements HttpInterceptor {
   
 
     this.nativeStorage.getItem('token')
-    .then(
-      data => { this.token = data;},
-      error => console.error(error)
-    );
+        .then( data => 
+            {     
+                this.token = data;
+            },
+            error => console.error(error)
+            );
     request = request.clone({
-      setHeaders: {
-        /* Adicionar no lugar de teste, o valor do token */
-        Authorization: `Bearer ${this.token}` 
-        }
+        setHeaders: { Authorization: `Bearer ${this.token}`}
     });
+    console.log('tokennnee',this.token)
+
 
     return next.handle(request).do((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
