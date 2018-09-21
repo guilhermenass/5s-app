@@ -47,11 +47,8 @@ export class LoginPage {
         this.data = result;
         User.profile = this.data.profile; 
         
-        await this.nativeStorage.setItem('token', this.data.token)
-          .then(
-            () => console.log('Stored item!', this.data.token),
-            error => console.error('Error storing item', error)
-          );
+        
+        this.nativeStorage.setItem('token', this.data.token);
         this.navCtrl.push(MainPage);
       }, (err) => {
         this.loading.dismiss();     

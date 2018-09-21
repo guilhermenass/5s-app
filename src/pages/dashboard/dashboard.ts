@@ -52,6 +52,11 @@ export class  DashboardPage {
   }
 
   ionViewDidLoad() {
+    this.init();
+  }
+
+  init(){
+    console.log('errouuu');
     this.evaluateService.search().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
@@ -63,9 +68,9 @@ export class  DashboardPage {
           this.delayed.push(evaluate);
         }
       });
-    });
-  }
+    })
 
+  }
   changeShowEvaluateSuccess(){
     if(!this.showEvaluatesSuccess){
       this.showEvaluatesSuccess = true;
