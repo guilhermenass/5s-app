@@ -17,13 +17,11 @@ export class TokenInterceptor implements HttpInterceptor {
 
     this.storage.getItem('token').then(data =>{
         this.token = data
-             request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer token ${this.token}` 
-      }
+    });
+    request = request.clone({
+        setHeaders: {
+            Authorization: `Bearer ${this.token}` 
         }
-    )
-
     });
      return next.handle(request).do((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {

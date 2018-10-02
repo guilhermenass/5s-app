@@ -18,21 +18,21 @@
       <ion-col col-12 col-sm-6  class="evaluate-execution-container">
         <div *ngFor="let question of questions; let i = index">
           <div *ngIf="index == i">
-              <h2 text-center style="color:white">{{i}} - {{question.Question.title}}</h2>
+              <h2 text-center style="color:white">{{i + 1 }} - {{question.Question.title}}</h2>
             <ion-card> 
               <ion-card-content>
                 <form id="form-evalution-start">              
                   <ion-list> 
                     Escolha uma das opções abaixo:  
-                    <ion-row>
+                    <ion-row class="">
                       <ion-col col-06 push-1>
-                          <ion-icon class="evaluate-execution-notes-icon" name="md-thumbs-down" [style.color]="answers[i].status == false ? 'red' : 'DarkGray'"  
+                          <ion-icon class="evaluate-execution-notes-icon md-thumbs-down" name="md-thumbs-down" [style.color]="answers[i].status == false ? 'red' : 'DarkGray'"  
                               (click)="answers[i].status = false"></ion-icon>    
                       </ion-col>
                       <ion-col col-06 push-1>
                         <ion-item>
                           <ion-icon class="evaluate-execution-notes-icon" name="md-thumbs-up" [style.color]="answers[i].status == true ? 'green' : 'DarkGray'"  (click)="answers[i].status = true"></ion-icon>    
-                        </ion-item>
+                        </ion-item> 
                       </ion-col>
                     </ion-row>
                     <ion-item>
