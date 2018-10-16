@@ -48,22 +48,20 @@ export class FinishEvaluatePage {
     this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
   }
 
-  // events
-  public chartClicked(e:any):void {
-  }
-
-  public chartHovered(e:any):void {
-  }
-
   generateActionPlan(){
     this.evaluateService.finishEvaluate(this.answers)
+
       .subscribe(res => {
         this.presentAlert();
       });
+
   }
 
   finishEvaluate(){
     this.evaluateService.finishEvaluate(this.answers)
+    .subscribe(res => {
+      //FIXME: Ajustar para não pegar a posição 0 fixa
+      this.evaluateService.updateStatus(1, this.answers[0].evaluateId)
       .subscribe(res => {
         this.presentAlert();
       });

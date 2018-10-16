@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, state } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -14,6 +14,7 @@ import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
 export class EvaluateServiceProvider {
 
     apiUrl = 'https://api-senai5s.herokuapp.com/evaluations';
+    // apiUrl = 'http://localhost:4000/evaluations';
 
   constructor(public http: HttpClient) {}  
 
@@ -47,5 +48,9 @@ export class EvaluateServiceProvider {
     private handleError(error: Response) {
         console.log('error ',error);
         return Observable.throw(error || 'Server error');
+    }
+
+    updateStatus(status: number, evaluationId: number) {
+        return this.http.put(`${this.apiUrl}/${evaluationId}`, {status: status});
     }
 }
