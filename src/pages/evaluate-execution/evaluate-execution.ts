@@ -51,6 +51,6 @@ export class EvaluateExecutionPage {
 
   finishEvaluate(){
     console.log(this.answers);
-    // this.navCtrl.push(FinishEvaluatePage, {answers:this.answers,questions: this.questions, evaluateId: this.evaluate.id} );
+    this.navCtrl.push(FinishEvaluatePage, {answers:this.answers,questions: this.questions, evaluateId: this.evaluate.id} );
   }
 }

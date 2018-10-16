@@ -85,6 +85,7 @@
     <plugin name="cordova-plugin-nativestorage" spec="^2.3.2" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <allow-navigation href="http://172.20.79.141:8100" />
+    <allow-navigation href="http://172.23.78.23:8100" />
     <engine name="browser" spec="5.0.4" />
     <engine name="android" spec="7.0.0" />
 </widget>
