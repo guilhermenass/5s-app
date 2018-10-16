@@ -40,18 +40,15 @@ export class LoginPage {
   doLogin() {
     this.showLoader();
     this.authService.login(this.user)
-      .then((result) => 
+      .then(async (result) => 
       {
         
         this.loading.dismiss();
         this.data = result;
         User.profile = this.data.profile; 
         
-        this.nativeStorage.setItem('token', this.data.token)
-          .then(
-            () => console.log('Stored item!'),
-            error => console.error('Error storing item', error)
-          );
+        
+        this.nativeStorage.setItem('token', this.data.token);
         this.navCtrl.push(MainPage);
       }, (err) => {
         this.loading.dismiss();     

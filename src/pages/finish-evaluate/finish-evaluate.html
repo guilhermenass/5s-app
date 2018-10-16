@@ -23,22 +23,23 @@
         <ion-card-content>
           <ion-row>
               <ion-col col-12 col-sm-6> 
-                <h2 *ngFor="let question of questions; let i = index" [style.color]="answers[i].status == true ? 'green' : 'red'" >{{i}} - {{question.Question.title}}</h2>
-              </ion-col>
-          </ion-row>
-          <ion-row>
-              <ion-col col-12 col-sm-6> 
                   <div style="display: block">
                       <canvas baseChart
-                                  [colors]="chartColors"
-                                  [data]="doughnutChartData"
-                                  [labels]="doughnutChartLabels"
-                                  [chartType]="doughnutChartType"
-                                  (chartHover)="chartHovered($event)"
-                                  (chartClick)="chartClicked($event)">
+                              [colors]="chartColors"
+                              [data]="doughnutChartData"
+                              [labels]="doughnutChartLabels"
+                              [chartType]="doughnutChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)">
                       </canvas>
                   </div>
               </ion-col>
+          </ion-row>
+          <button ion-button outline block color="secondary" (click)="showDetailsQuestionsAnswers()">{{showDetailsQuestions ? 'Ver menos detalhes' : 'Ver mais detalhes'}}</button>
+          <ion-row *ngIf="showDetailsQuestions">
+            <ion-col col-12 col-sm-6 text-start> 
+              <h2 *ngFor="let question of questions; let i = index" [style.color]="answers[i].status == true ? 'green' : 'red'" >{{i + 1}} - {{question.Question.title}}</h2>
+            </ion-col>
           </ion-row>
           <button *ngIf="answerNonCompliance > 0" ion-button col-12 color="secondary" (click)="generateActionPlan()">
             <ion-label>

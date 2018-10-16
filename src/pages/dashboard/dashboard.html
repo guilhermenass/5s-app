@@ -16,7 +16,7 @@
   <ion-grid>
     <ion-card > 
       <ion-card-header style="background-color: #81F79F; opacity:0.8" (click)="changeShowEvaluateSuccess()">
-        Concluidas
+        Concluidas ({{concluded.length}})
       </ion-card-header>
       
       <ion-card-content *ngIf="showEvaluatesSuccess">
@@ -39,7 +39,7 @@
     <ion-card >
 
       <ion-card-header style="background-color: #F3F781; opacity:0.8" (click)="changeShowEvaluatePending()" >
-        Pendentes
+       Pendentes ({{pending.length}})
       </ion-card-header>
       
       <ion-card-content *ngIf="showEvaluatesPending">   
@@ -62,7 +62,7 @@
     <ion-card >
 
       <ion-card-header style="background-color: #F5A9A9; opacity:0.8" (click)="changeShowEvaluateDelayed()">
-        Atrasadas
+        Atrasadas ({{delayed.length}})
       </ion-card-header>
       
       <ion-card-content *ngIf="showEvaluatesDelayed">                  

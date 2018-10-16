@@ -1,34 +1,29 @@
 import { AlertController } from 'ionic-angular';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
  
 import { Observable } from 'rxjs';
+import { _throw } from 'rxjs/observable/throw';
 import { mergeMap } from 'rxjs/operator/mergeMap';
 import { NativeStorage } from '@ionic-native/native-storage';
-
-
-@Injectable()
+ @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
  
-  constructor(private nativeStorage: NativeStorage) { }
+    token: string;
+  constructor(private storage: NativeStorage, private alertCtrl: AlertController) { }
  
-  token: string;
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  
 
-    this.nativeStorage.getItem('token')
-    .then(
-      data => { this.token = data;},
-      error => console.error(error)
-    );
+    this.storage.getItem('token').then(data =>{
+        this.token = data
+    });
     request = request.clone({
-      setHeaders: {
-        /* Adicionar no lugar de teste, o valor do token */
-        Authorization: `Bearer ${this.token}` 
+        setHeaders: {
+            Authorization: `Bearer ${this.token}` 
         }
     });
-
-    return next.handle(request).do((event: HttpEvent<any>) => {
+     return next.handle(request).do((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
             // do stuff with response if you want
         }
@@ -41,4 +36,5 @@ export class TokenInterceptor implements HttpInterceptor {
         }
     });
   }
-}
+
+} 

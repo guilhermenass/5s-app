@@ -52,20 +52,24 @@ export class  DashboardPage {
   }
 
   ionViewDidLoad() {
+    this.init();
+  }
+
+  init(){
     this.evaluateService.search().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
         if(evaluate.status === 1){
           this.concluded.push(evaluate);
-        }else if(evaluate.status === 0){
+        }else if(evaluate.status === 0 && new Date(evaluate.audit_due_date) >= new Date()){
           this.pending.push(evaluate)
         } else {
           this.delayed.push(evaluate);
         }
       });
-    });
-  }
+    })
 
+  }
   changeShowEvaluateSuccess(){
     if(!this.showEvaluatesSuccess){
       this.showEvaluatesSuccess = true;

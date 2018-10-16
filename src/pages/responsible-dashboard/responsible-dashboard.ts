@@ -16,6 +16,7 @@ import {ExecuteActionPlanPage} from '../execute-action-plan/execute-action-plan'
 })
 export class ResponsibleDashboardPage {
 
+  showAuditsPending = true;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
