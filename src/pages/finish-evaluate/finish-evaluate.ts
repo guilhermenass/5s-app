@@ -59,7 +59,6 @@ export class FinishEvaluatePage {
     this.evaluateService.finishEvaluate(this.answers)
       .subscribe(res => {
         this.presentAlert();
-        console.log('res', res)
       });
   }
 
@@ -86,7 +85,7 @@ export class FinishEvaluatePage {
     alert.present();
   }
 
-  algumaFuncaoMuitoLegal(){
+  showDetailsQuestionsAnswers(){
     this.showDetailsQuestions = !this.showDetailsQuestions;
   }
 }

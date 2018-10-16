@@ -35,12 +35,12 @@
                   </div>
               </ion-col>
           </ion-row>
-          <p (click)="algumaFuncaoMuitoLegal()">{{showDetailsQuestions ? 'Ver menos detalhes' : 'Ver mais detalhes'}}</p>
+          <button ion-button outline block color="secondary" (click)="showDetailsQuestionsAnswers()">{{showDetailsQuestions ? 'Ver menos detalhes' : 'Ver mais detalhes'}}</button>
           <ion-row *ngIf="showDetailsQuestions">
             <ion-col col-12 col-sm-6 text-start> 
               <h2 *ngFor="let question of questions; let i = index" [style.color]="answers[i].status == true ? 'green' : 'red'" >{{i + 1}} - {{question.Question.title}}</h2>
             </ion-col>
-          </ion-row>  
+          </ion-row>
           <button *ngIf="answerNonCompliance > 0" ion-button col-12 color="secondary" (click)="generateActionPlan()">
             <ion-label>
                 Gerar Plano de Ação
