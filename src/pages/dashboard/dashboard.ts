@@ -2,11 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EvaluateResumePage } from '../evaluate-resume/evaluate-resume'
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
-import { NativeStorage } from '@ionic-native/native-storage';
 import { Evaluate } from '../../model/evaluate';
-import { Enviroment } from '../../model/enviroment';
-import { User } from '../../model/user';
-import { Audit } from '../../model/audit';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 
 /**
@@ -23,16 +19,6 @@ import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 })
 export class  DashboardPage {
   
-  // private id: number;
-  // private title: string;
-  // private status: string; 
-  // private createAt: Date;
-  // private initialDate: Date;
-  // private attachment: string;
-  // private note: number;
-  // private userId: number;
-  // private endDate: Date;
-  // private currentResponsible: number;
   evaluates: EvaluationExecutionDto[];
   pending: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
   delayed: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
@@ -40,8 +26,7 @@ export class  DashboardPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public evaluateService: EvaluateServiceProvider,
-              private nativeStorage: NativeStorage) {}
+              public evaluateService: EvaluateServiceProvider) {}
 
   showEvaluatesSuccess = false;
   showEvaluatesDelayed = false;

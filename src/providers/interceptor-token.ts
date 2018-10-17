@@ -1,17 +1,12 @@
-import { AlertController } from 'ionic-angular';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
- 
+import { Injectable } from '@angular/core'; 
 import { Observable } from 'rxjs';
-import { _throw } from 'rxjs/observable/throw';
-import { mergeMap } from 'rxjs/operator/mergeMap';
 import { NativeStorage } from '@ionic-native/native-storage';
  @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
  
     token: string;
-  constructor(private storage: NativeStorage, private alertCtrl: AlertController) { }
+  constructor(private storage: NativeStorage) { }
  
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 

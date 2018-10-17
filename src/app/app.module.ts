@@ -19,7 +19,6 @@ import { ExpandableComponent } from '../components/expandable/expandable'
 import { TokenInterceptor } from '../providers/interceptor-token';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { ConsumesApiProvider } from '../providers/consumes-api/consumes-api';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { QuestionServiceProvider } from '../providers/question-service';
@@ -80,7 +79,6 @@ import { EmailService } from '../providers/email-service';
     AuthServiceProvider,
     EvaluateServiceProvider,
     QuestionServiceProvider,
-    ConsumesApiProvider,
     NativeStorage,
     EmailService
   ]

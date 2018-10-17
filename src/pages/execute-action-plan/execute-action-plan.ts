@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -31,15 +31,12 @@ export class ExecuteActionPlanPage {
 
   expandItem(item){
     this.items.map((listItem) => {
-
         if(item == listItem){
             listItem.expanded = true;
         } else {
             listItem.expanded = false;
         }
-
         return listItem;
-
     }); 
   }
 

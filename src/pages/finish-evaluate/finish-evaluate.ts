@@ -61,9 +61,9 @@ export class FinishEvaluatePage {
   }
 
   finishEvaluate(){
-    this.evaluateService.finishEvaluate(this.answers) //respostas
+    this.evaluateService.finishEvaluate(this.answers)
     .subscribe(res => {
-      this.evaluateService.updateStatus(1, this.answers[0].evaluateId) //avaliação
+      this.evaluateService.updateStatus(1, this.answers[0].evaluateId)
       .subscribe(res => {
         // this.presentAlert(res['message']);
         this.emailService.sendEmailSuccessfulEvaluation();
