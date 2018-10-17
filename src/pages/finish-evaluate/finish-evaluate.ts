@@ -4,6 +4,7 @@ import { Answer } from '../../model/answer';
 import { Question } from '../../model/question';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { DashboardPage } from '../dashboard/dashboard';
+import { EmailService } from '../../providers/email-service';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,8 @@ export class FinishEvaluatePage {
   answers: Array<Answer>;
   questions: Array<Question>;
   evaluateId: number;
-
+  private readonly EVALUATION_SAVED_SUCCESSFUL = 'A avaliação foi concluída com sucesso';
+  
   /**
    * variáveis usadas para fazer a contagem de conformidades e inconformidades
    */
@@ -23,7 +25,7 @@ export class FinishEvaluatePage {
   answerNonCompliance = 0;
   
   showDetailsQuestions: boolean = false;
-
+  
   public doughnutChartLabels:string[] = ['Conforme', 'Não conforme'];
   public doughnutChartData:number[] = [0,0];
   public doughnutChartType:string = 'doughnut';
@@ -32,6 +34,7 @@ export class FinishEvaluatePage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public evaluateService: EvaluateServiceProvider,
+              public emailService: EmailService,
               private alertCtrl: AlertController) {
     this.answers = navParams.get('answers');
     this.questions = navParams.get('questions');
@@ -58,19 +61,20 @@ export class FinishEvaluatePage {
   }
 
   finishEvaluate(){
-    this.evaluateService.finishEvaluate(this.answers)
+    this.evaluateService.finishEvaluate(this.answers) //respostas
     .subscribe(res => {
-      //FIXME: Ajustar para não pegar a posição 0 fixa
-      this.evaluateService.updateStatus(1, this.answers[0].evaluateId)
+      this.evaluateService.updateStatus(1, this.answers[0].evaluateId) //avaliação
       .subscribe(res => {
-        this.presentAlert();
+        // this.presentAlert(res['message']);
+        this.emailService.sendEmailSuccessfulEvaluation();
       });
+    });
   }
 
-  presentAlert() {
+  presentAlert(message?: string) {
     let alert = this.alertCtrl.create({
       title: 'Avaliação Finalizada',
-      subTitle: 'Avaliação finalizada com sucesso!',
+      subTitle: message ? message : this.EVALUATION_SAVED_SUCCESSFUL,
       buttons: [
         {
           text: 'Ok',

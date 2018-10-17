@@ -1,20 +1,19 @@
-import { Injectable, state } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/throw';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Evaluate } from '../model/evaluate';
 import { Answer } from '../model/answer';
 import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
 
 @Injectable()
 export class EvaluateServiceProvider {
 
-    apiUrl = 'https://api-senai5s.herokuapp.com/evaluations';
-    // apiUrl = 'http://localhost:4000/evaluations';
+    //apiUrl = 'https://api-senai5s.herokuapp.com/evaluations';
+    apiUrl = 'http://localhost:4000/evaluations';
 
   constructor(public http: HttpClient) {}  
 

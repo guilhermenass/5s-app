@@ -5,21 +5,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule  } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
-
 import { MyApp } from './app.component';
-
 import { LoginPage } from '../pages/login/login';
-import { LoginPageModule } from '../pages/login/login.module';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { ResponsibleDashboardPage } from '../pages/responsible-dashboard/responsible-dashboard';
 import { ExecuteActionPlanPage } from '../pages/execute-action-plan/execute-action-plan';
 import { FooterTabsPage } from '../pages/footer-tabs/footer-tabs';
-
 import { FinishEvaluatePage } from '../pages/finish-evaluate/finish-evaluate';
 import { UserConfigPage } from '../pages/user-config/user-config';  
 import { MainPage } from '../pages/main/main';
-
 import { ExpandableComponent } from '../components/expandable/expandable'
 import { TokenInterceptor } from '../providers/interceptor-token';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -32,7 +27,7 @@ import { AuditsPage } from '../pages/audits/audits';
 import { EvaluateResumePage } from '../pages/evaluate-resume/evaluate-resume';
 import { EvaluateExecutionPage } from '../pages/evaluate-execution/evaluate-execution';
 import { EvaluateServiceProvider } from '../providers/evaluate-service';
-
+import { EmailService } from '../providers/email-service';
 
 @NgModule({
   declarations: [
@@ -86,7 +81,8 @@ import { EvaluateServiceProvider } from '../providers/evaluate-service';
     EvaluateServiceProvider,
     QuestionServiceProvider,
     ConsumesApiProvider,
-    NativeStorage
+    NativeStorage,
+    EmailService
   ]
 })
 export class AppModule {}
