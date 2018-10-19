@@ -50,7 +50,10 @@ import { EmailService } from '../providers/email-service';
     HttpModule,
     ChartsModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    }),
     HttpClientModule,
     
   ],
@@ -80,7 +83,7 @@ import { EmailService } from '../providers/email-service';
     EvaluateServiceProvider,
     QuestionServiceProvider,
     NativeStorage,
-    EmailService
+    EmailService,
   ]
 })
 export class AppModule {}
