@@ -23,6 +23,7 @@ export class EvaluateExecutionPage {
               private questionService: QuestionServiceProvider,
               public navParams: NavParams) {
     this.evaluate = navParams.get('evaluate');
+    console.log(this.evaluate);
   }
 
   ionViewDidLoad() {
