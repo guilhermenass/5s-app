@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-//let apiUrl = 'https://api-senai5s.herokuapp.com/';
+// let apiUrl = 'https://api-5s.herokuapp.com/';
 let apiUrl = 'http://localhost:4000/'
 @Injectable()
 export class AuthServiceProvider {

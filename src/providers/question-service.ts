@@ -10,8 +10,7 @@ import { Question } from '../model/question';
 
 @Injectable()
 export class QuestionServiceProvider {
-         // https://api-senai5s.herokuapp.com/questions/enviromentType/1
-  apiUrl = 'https://api-senai5s.herokuapp.com/questions';
+  apiUrl = 'http://localhost:4000/questions';
 
   constructor(public http: HttpClient) {}  
 
