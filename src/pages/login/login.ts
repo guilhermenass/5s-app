@@ -4,8 +4,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { MainPage } from '../main/main';
 import { User } from '../../model/user';
-import { NativeStorage } from '@ionic-native/native-storage';
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the LoginPage page.
  *
@@ -30,7 +29,7 @@ export class LoginPage {
     public  authService: AuthServiceProvider, 
     public  loadingCtrl: LoadingController, 
     private toastCtrl  : ToastController,
-    private nativeStorage: NativeStorage
+    private storage: Storage
   ) {}
 
   goToForgotPassWord(){
@@ -47,8 +46,7 @@ export class LoginPage {
         this.data = result;
         User.profile = this.data.profile; 
         
-        
-        this.nativeStorage.setItem('token', this.data.token);
+        this.storage.set('token', this.data.token);
         this.navCtrl.push(MainPage);
       }, (err) => {
         this.loading.dismiss();     
