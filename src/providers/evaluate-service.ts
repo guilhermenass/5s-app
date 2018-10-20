@@ -12,7 +12,7 @@ import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
 @Injectable()
 export class EvaluateServiceProvider {
 
-    //apiUrl = 'https://api-senai5s.herokuapp.com/evaluations';
+    //apiUrl = 'https://api-5s.herokuapp.com/evaluations';
     apiUrl = 'http://localhost:4000/evaluations';
 
   constructor(public http: HttpClient) {}  
@@ -21,6 +21,7 @@ export class EvaluateServiceProvider {
          return this.http.get(this.apiUrl)
             .map((response: Response) => 
             {
+                console.log('resp', response)
                 return response;
             })
             .catch(this.handleError);      

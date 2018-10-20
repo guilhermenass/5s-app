@@ -65,7 +65,7 @@ export class FinishEvaluatePage {
     .subscribe(res => {
       this.evaluateService.updateStatus(1, this.answers[0].evaluateId)
       .subscribe(res => {
-        // this.presentAlert(res['message']);
+        this.presentAlert(res['message']);
         this.emailService.sendEmailSuccessfulEvaluation();
       });
     });
