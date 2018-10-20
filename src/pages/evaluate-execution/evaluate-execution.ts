@@ -5,6 +5,8 @@ import { QuestionServiceProvider } from '../../providers/question-service';
 import { Question } from '../../model/question';
 import { Answer } from '../../model/answer';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
+import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
+import { EvaluationDto } from '../../dto/evaluation-dto';
 
 @IonicPage()
 @Component({
@@ -13,7 +15,7 @@ import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 })
 export class EvaluateExecutionPage {
 
-  private evaluate: EvaluationExecutionDto;
+  private evaluation: FinishEvaluationDto;
   questions = new Array<Question>();
   answers = new Array<Answer>();
 
@@ -22,15 +24,14 @@ export class EvaluateExecutionPage {
   constructor(public navCtrl: NavController,
               private questionService: QuestionServiceProvider,
               public navParams: NavParams) {
-    this.evaluate = navParams.get('evaluate');
-    console.log(this.evaluate);
+    this.evaluation = navParams.get('evaluation');
   }
 
   ionViewDidLoad() {
-    this.questionService.findQuestionByEnvironmentTypeId(this.evaluate.enviroment_type_id).subscribe(x => {
+    this.questionService.findQuestionByEnvironmentTypeId(this.evaluation['enviroment_type_id']).subscribe(x => {
       this.questions = x;
       x.forEach(question => {
-        this.answers.push(new Answer(this.evaluate.id, question.questions_id));
+        this.answers.push(new Answer(this.evaluation['id'], question.questions_id, question['Question'].title));
       })
     });
   }
@@ -51,6 +52,14 @@ export class EvaluateExecutionPage {
   }
 
   finishEvaluate(){
-    this.navCtrl.push(FinishEvaluatePage, {answers:this.answers,questions: this.questions, evaluateId: this.evaluate.id} );
+    const finishEvaluationDto = new FinishEvaluationDto(
+      this.answers,
+      this.questions,
+      new EvaluationDto(
+        this.evaluation['id'],
+        this.evaluation['email']
+        )
+      )
+    this.navCtrl.push(FinishEvaluatePage, {evaluationDto: finishEvaluationDto});
   }
 }

@@ -5,6 +5,7 @@ import { Question } from '../../model/question';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EmailService } from '../../providers/email-service';
+import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
 
 @IonicPage()
 @Component({
@@ -16,6 +17,9 @@ export class FinishEvaluatePage {
   answers: Array<Answer>;
   questions: Array<Question>;
   evaluateId: number;
+
+  evaluationDto: FinishEvaluationDto;
+
   private readonly EVALUATION_SAVED_SUCCESSFUL = 'A avaliação foi concluída com sucesso';
   
   /**
@@ -36,11 +40,10 @@ export class FinishEvaluatePage {
               public evaluateService: EvaluateServiceProvider,
               public emailService: EmailService,
               private alertCtrl: AlertController) {
-    this.answers = navParams.get('answers');
-    this.questions = navParams.get('questions');
-    this.evaluateId = navParams.get('evaluateId')
 
-    this.answers.forEach(answer =>
+    this.evaluationDto = this.navParams.get('evaluationDto');
+
+    this.evaluationDto.answers.forEach(answer =>
     { 
       if(answer.status){
         this.answerCompliance++;
@@ -52,21 +55,27 @@ export class FinishEvaluatePage {
   }
 
   generateActionPlan(){
-    this.evaluateService.finishEvaluate(this.answers)
-
-      .subscribe(res => {
+    var emailDto = {
+      email: this.evaluationDto.evaluation.userEmail,
+      nonCompliances: this.evaluationDto.answers
+    }
+    this.evaluateService.finishEvaluate(this.evaluationDto.answers)
+      .subscribe(() => {
+        this.emailService.sendEmailWithNonCompliances(emailDto)
+        .subscribe(() => {})
         this.presentAlert();
       });
 
   }
 
   finishEvaluate(){
-    this.evaluateService.finishEvaluate(this.answers)
+    this.evaluateService.finishEvaluate(this.evaluationDto.answers)
     .subscribe(res => {
-      this.evaluateService.updateStatus(1, this.answers[0].evaluateId)
+      this.evaluateService.updateStatus(1, this.evaluationDto.answers[0].evaluateId)
       .subscribe(res => {
         this.presentAlert(res['message']);
-        this.emailService.sendEmailSuccessfulEvaluation();
+        this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail)
+        .subscribe(() => {})
       });
     });
   }

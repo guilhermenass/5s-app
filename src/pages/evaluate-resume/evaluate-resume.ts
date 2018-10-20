@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EvaluateExecutionPage } from '../evaluate-execution/evaluate-execution';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
+import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
 
 @IonicPage()
 @Component({
@@ -10,13 +11,13 @@ import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 })
 export class EvaluateResumePage {
 
-  evaluate: EvaluationExecutionDto;
+  evaluation: FinishEvaluationDto;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.evaluate = navParams.get('evaluate');
+    this.evaluation = navParams.get('evaluation');
   }
 
   gotToEvaluateStart(){
-    this.navCtrl.push(EvaluateExecutionPage,{evaluate:this.evaluate});
+    this.navCtrl.push(EvaluateExecutionPage,{evaluation: this.evaluation});
   }
 
 }

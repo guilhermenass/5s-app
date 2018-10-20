@@ -32,8 +32,8 @@ export class  DashboardPage {
   showEvaluatesDelayed = false;
   showEvaluatesPending = false;
 
-  goToEvaluateResume(evaluate: Evaluate){
-    this.navCtrl.push(EvaluateResumePage,{evaluate:evaluate});
+  goToEvaluateResume(evaluation: Evaluate){
+    this.navCtrl.push(EvaluateResumePage,{evaluation:evaluation});
   }
 
   ionViewDidLoad() {
