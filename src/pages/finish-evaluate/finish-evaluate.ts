@@ -64,10 +64,10 @@ export class FinishEvaluatePage {
     this.evaluateService.finishEvaluate(this.evaluationDto.answers)
       .subscribe(() => {
         this.evaluateService.updateStatus(2, this.evaluationDto.answers[0].evaluateId)
-        .subscribe(() => {
+        .subscribe((res) => {
+          this.presentAlert(res['message']);
           this.emailService.sendEmailWithNonCompliances(emailDto)
           .subscribe(() => {})
-          this.presentAlert();
         })
       });
   }
