@@ -1,54 +1,65 @@
+
 <ion-header>
-  
+
   <ion-navbar>
     <ion-title text-left>Senai 5S</ion-title>
   </ion-navbar>
-  
+
 </ion-header>
+
+
 <ion-content style="background-color: #2c3e50;">
     
-    <div (click)="expandItem(item)">
-      <h2 text-center style="color:white">Planos de ação</h2>
-    </div>
-    <ion-grid>
-      <ion-card >
-        <ion-card-header style="background-color: #F3F781; opacity:0.8" (click)="changeShowAuditPending()" >
-          Pendentes
-        </ion-card-header>
-        
-        <ion-card-content *ngIf="showAuditsPending">   
-          <ion-list>           
-            <ion-item (click)="goToAuditResume()">
-              <ion-avatar item-start>                     
-                <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
-              </ion-avatar>
-              <h2>Avaliação pendente</h2>
-              <h3>Data limite 10/03/2018 a 15/03/2018</h3>
-              <p>Sala 105 - Bloco B</p>
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
-  
-      <ion-card >
-          <ion-card-header style="background-color: #F5A9A9; opacity:0.8" (click)="changeShowAuditPending()" >
-            Atrasados
-          </ion-card-header>
-          
-          <ion-card-content *ngIf="showAuditsPending">   
-            <ion-list>           
-              <ion-item (click)="goToAuditResume()">
-                <ion-avatar item-start>                     
-                  <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
-                </ion-avatar>
-                <h2>Avaliação pendente</h2>
-                <h3>Data limite 10/03/2018 a 15/03/2018</h3>
-                <p>Sala 105 - Bloco B</p>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-    </ion-grid>
+  <div (click)="expandItem(item)">
+    <h2 text-center style="color:white">Avaliações</h2>
+  </div>
+  <ion-grid>
+
+    <ion-card >
+
+      <ion-card-header style="background-color: #F3F781; opacity:0.8" (click)="changeShowEvaluatePending()" >
+       Pendentes ({{pending.length}})
+      </ion-card-header>
       
-  </ion-content>
-  
+      <ion-card-content *ngIf="showEvaluatesPending">   
+        <ion-list>           
+          <ion-item (click)="goToEvaluateResume(pend)" *ngFor="let pend of pending">
+            <ion-avatar item-start>                     
+              <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
+            </ion-avatar>
+
+            <h2> {{pend.audit_title}} - {{pend.enviroment_name}} - {{pend.enviroment_block}}</h2>
+            <h3>Data limite {{pend.audit_initial_date}} a {{pend.audit_due_date}}</h3>
+
+          </ion-item>
+          <p *ngIf="pending.length == 0"> Nenhuma Inspeção Pendente</p>
+        </ion-list>
+      </ion-card-content>
+      
+    </ion-card>
+
+    <ion-card >
+
+      <ion-card-header style="background-color: #F5A9A9; opacity:0.8" (click)="changeShowEvaluateDelayed()">
+        Atrasadas ({{delayed.length}})
+      </ion-card-header>
+      
+      <ion-card-content *ngIf="showEvaluatesDelayed">                  
+        <ion-list>
+          <ion-item (click)="goToEvaluateResume(delay)" *ngFor="let delay of delayed">
+            <ion-avatar item-start>                     
+              <ion-icon name="md-warning" style="color: #fa2500"></ion-icon>                      
+            </ion-avatar>
+            <h2>{{delay.audit_title}} - {{delay.enviroment_name}} - {{delay.enviroment_block}}</h2>
+            <h3>Data limite {{delay.audit_initial_date}} a {{delay.audit_due_date}}</h3>
+
+          </ion-item> 
+          <p *ngIf="delayed.length == 0"> Nenhuma inspeção atrasada</p>            
+          
+        </ion-list>
+      </ion-card-content>
+      
+    </ion-card>
+  </ion-grid>
+    
+</ion-content>
