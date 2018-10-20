@@ -47,12 +47,12 @@
                         </button>
                       </div>
                       <div col-6>
-                        <button *ngIf="index != (questions.length -1)" ion-button color="secondary" (click)="goNext(i+1)" item-end>
+                        <button *ngIf="index != (questions.length -1)" [disabled]="!answers[i].comments && answers[i].status != true" ion-button color="secondary" (click)="goNext(i+1)" item-end>
                           <ion-label>
                             Próxima
                           </ion-label>
                         </button>
-                        <button *ngIf="index === (questions.length -1)" ion-button color="secondary" (click)="finishEvaluate()" item-end>
+                        <button *ngIf="index === (questions.length -1)" [disabled]="!answers[i].comments && answers[i].status != true" ion-button color="secondary" (click)="finishEvaluate()" item-end>
                           <ion-label>
                             Concluir
                           </ion-label>

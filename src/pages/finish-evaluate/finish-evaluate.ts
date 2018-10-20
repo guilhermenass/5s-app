@@ -57,21 +57,25 @@ export class FinishEvaluatePage {
   generateActionPlan(){
     var emailDto = {
       email: this.evaluationDto.evaluation.userEmail,
-      nonCompliances: this.evaluationDto.answers
+      nonCompliances: this.evaluationDto.answers.filter(x => {
+        return x.status == false
+     })
     }
     this.evaluateService.finishEvaluate(this.evaluationDto.answers)
       .subscribe(() => {
-        this.emailService.sendEmailWithNonCompliances(emailDto)
-        .subscribe(() => {})
-        this.presentAlert();
+        this.evaluateService.updateStatus(2, this.evaluationDto.answers[0].evaluateId)
+        .subscribe(() => {
+          this.emailService.sendEmailWithNonCompliances(emailDto)
+          .subscribe(() => {})
+          this.presentAlert();
+        })
       });
-
   }
 
   finishEvaluate(){
     this.evaluateService.finishEvaluate(this.evaluationDto.answers)
     .subscribe(res => {
-      this.evaluateService.updateStatus(1, this.evaluationDto.answers[0].evaluateId)
+      this.evaluateService.updateStatus(2, this.evaluationDto.answers[0].evaluateId)
       .subscribe(res => {
         this.presentAlert(res['message']);
         this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail)
