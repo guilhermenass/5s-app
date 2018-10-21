@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ExecuteActionPlanPage} from '../execute-action-plan/execute-action-plan';
+import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
+import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 
 /**
  * Generated class for the ResponsibleDashboardPage page.
@@ -16,15 +18,49 @@ import {ExecuteActionPlanPage} from '../execute-action-plan/execute-action-plan'
 })
 export class ResponsibleDashboardPage {
 
-  showAuditsPending = true;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  evaluates: EvaluationExecutionDto[];
+  pending: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
+  delayed: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
+
+  showEvaluatesDelayed = false;
+  showEvaluatesPending = false;
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public evaluateService: EvaluateServiceProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ResponsibleDashboardPage');
+    this.init();
   }
 
-  goToExecuteActionPlan(){
-    this.navCtrl.push(ExecuteActionPlanPage);
+  init(){
+    this.evaluateService.searchResponsible().subscribe(x => {
+      this.evaluates = x;
+      this.evaluates.forEach(evaluate =>{
+        if(new Date(evaluate.audit_due_date) >= new Date()){
+          this.pending.push(evaluate)
+        } else {
+          this.delayed.push(evaluate);
+        }
+      });
+    });
+  }
+
+  changeShowEvaluateDelayed(){
+    if(!this.showEvaluatesDelayed){
+      this.showEvaluatesDelayed = true;
+      this.showEvaluatesPending = false;
+    } else {
+      this.showEvaluatesDelayed = false;      
+    }
+  }
+
+  changeShowEvaluatePending(){
+    if(!this.showEvaluatesPending){
+      this.showEvaluatesPending = true;
+      this.showEvaluatesDelayed = false;
+    } else {
+      this.showEvaluatesPending = false;      
+    }
   }
 }

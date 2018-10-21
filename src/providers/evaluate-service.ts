@@ -17,8 +17,17 @@ export class EvaluateServiceProvider {
 
   constructor(public http: HttpClient) {}  
 
-    search(): Observable<Array<EvaluationExecutionDto>> {
-         return this.http.get(this.apiUrl)
+    searchAppraiser(): Observable<Array<EvaluationExecutionDto>> {
+        return this.http.get(`${this.apiUrl}/appraiser`)
+            .map((response: Response) => 
+            {
+                return response;
+            })
+            .catch(this.handleError);      
+    }
+
+    searchResponsible(): Observable<Array<EvaluationExecutionDto>> {
+        return this.http.get(`${this.apiUrl}/responsible`)
             .map((response: Response) => 
             {
                 console.log('resp', response)

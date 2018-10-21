@@ -41,7 +41,7 @@ export class  DashboardPage {
   }
 
   init(){
-    this.evaluateService.search().subscribe(x => {
+    this.evaluateService.searchAppraiser().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
         if(evaluate.status === 1){
@@ -52,7 +52,7 @@ export class  DashboardPage {
           this.delayed.push(evaluate);
         }
       });
-    })
+    });
 
   }
   changeShowEvaluateSuccess(){
