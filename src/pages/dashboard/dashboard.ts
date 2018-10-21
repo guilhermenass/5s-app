@@ -44,9 +44,9 @@ export class  DashboardPage {
     this.evaluateService.searchAppraiser().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
-        if(evaluate.status === 1){
+        if(evaluate.status === 2){
           this.concluded.push(evaluate);
-        }else if(evaluate.status === 0 && new Date(evaluate.audit_due_date) >= new Date()){
+        }else if(new Date(evaluate.audit_due_date) >= new Date()){
           this.pending.push(evaluate)
         } else {
           this.delayed.push(evaluate);
