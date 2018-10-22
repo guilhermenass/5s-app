@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ExecuteActionPlanPage} from '../execute-action-plan/execute-action-plan';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
-import { Evaluate } from '../../model/evaluate';
-import { EvaluateResponsibleResumePage } from '../evaluate-responsible-resume/evaluate-responsible-resume';
 
 /**
  * Generated class for the ResponsibleDashboardPage page.
@@ -64,9 +62,5 @@ export class ResponsibleDashboardPage {
     } else {
       this.showEvaluatesPending = false;      
     }
-  }
-
-  goToEvaluateResume(evaluation: Evaluate){
-    this.navCtrl.push(EvaluateResponsibleResumePage,{evaluation:evaluation});
   }
 }

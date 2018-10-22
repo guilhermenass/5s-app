@@ -32,8 +32,7 @@ export class  DashboardPage {
   showEvaluatesDelayed = false;
   showEvaluatesPending = false;
 
-  goToEvaluateResume(evaluation: EvaluationExecutionDto){
-    console.log('evaluationDashbord', evaluation);
+  goToEvaluateResume(evaluation: Evaluate){
     this.navCtrl.push(EvaluateResumePage,{evaluation:evaluation});
   }
 
@@ -44,13 +43,11 @@ export class  DashboardPage {
   init(){
     this.evaluateService.searchAppraiser().subscribe(x => {
       this.evaluates = x;
-      console.log('recebido do banco', x);
       this.evaluates.forEach(evaluate =>{
         if(evaluate.status === 2){
           this.concluded.push(evaluate);
         }else if(new Date(evaluate.audit_due_date) >= new Date()){
-
-          this.pending.push(evaluate);
+          this.pending.push(evaluate)
         } else {
           this.delayed.push(evaluate);
         }
