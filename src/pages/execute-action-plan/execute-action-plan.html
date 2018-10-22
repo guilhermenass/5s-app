@@ -1,56 +1,73 @@
 <!--
-  Generated template for the AuditResumePage page.
+  Generated template for the DashboardPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
   
-    <ion-navbar>
-      <ion-title>Senai 5s</ion-title>
-    </ion-navbar>
-  
-  </ion-header>
+  <ion-navbar>
+    <ion-title>Senai 5s</ion-title>
+  </ion-navbar>
 
+</ion-header>
 
 <ion-content padding style="background-color: #2c3e50">
-    
-    <ion-grid>
-      <ion-card>
-        <ion-card-header>
-          Executar Plano de Ação
-        </ion-card-header>
-        <ion-card-content>
-          <ion-row *ngFor="let item of items">
-              <ion-col col-12 col-sm-6> 
-                <div (click)="expandItem(item)">
-                  <h2 style="color: red">1 - O ambiente está devidamente organizado?</h2>
-                </div>
-                <expandable [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
-                    <ion-card>
-                      <ion-card-content>
-                        <ion-list radio-group>
-                          <ion-item>
-                            <ion-label>Sim</ion-label>
-                            <ion-radio value="1" [checked]="true"></ion-radio>
-                          </ion-item>
-                          <ion-item>
-                            <ion-label>Não</ion-label>
-                            <ion-radio value="2"></ion-radio>
-                          </ion-item>
-                        </ion-list>
-                      </ion-card-content>
-                    </ion-card>
-                </expandable>
-              </ion-col>
-          </ion-row>
-          <button ion-button col-12 color="secondary">
-            <ion-label>
-                Gerar Plano de Ação
-            </ion-label>
-          </button>
-        </ion-card-content>
-      </ion-card>      
-  </ion-grid>
-
+<ion-grid>
+  <ion-row>
+    <ion-col col-12 col-sm-6  class="evaluate-execution-container">
+      {{questions | json}}
+      <div *ngFor="let question of questionsResponsible; let i = index">
+        <div *ngIf="index == i">
+            <h2 text-center style="color:white">{{i + 1 }} - {{question.title}}</h2>
+          <ion-card> 
+            <ion-card-content>
+              <form id="form-evalution-start">              
+                <ion-list> 
+                  Escolha uma das opções abaixo:  
+                  <ion-row class="">
+                    <ion-col col-06 push-1>
+                        <ion-icon class="evaluate-execution-notes-icon md-thumbs-down" name="md-thumbs-down" [style.color]="answers[i].status == false ? 'red' : 'DarkGray'"  
+                            (click)="answers[i].status = false"></ion-icon>    
+                    </ion-col>
+                    <ion-col col-06 push-1>
+                      <ion-item>
+                        <ion-icon class="evaluate-execution-notes-icon" name="md-thumbs-up" [style.color]="answers[i].status == true ? 'green' : 'DarkGray'"  (click)="answers[i].status = true"></ion-icon>    
+                      </ion-item> 
+                    </ion-col>
+                  </ion-row>
+                  <!-- <ion-item>
+                    <textarea #myInput class="evaluate-execution-comments" name="comments" [(ngModel)]="answers[i].comments" rows="3" maxLength="200" (keyup)="resize()" placeholder="Comentários"></textarea>                          
+                  </ion-item>  -->
+                  <ion-row>
+                    <div col-6>
+                      <button *ngIf="index != 0" outline ion-button color="secondary" (click)="goPrevious(i-1)">
+                        <ion-label>
+                          Voltar                        
+                        </ion-label>
+                      </button>
+                    </div>
+                    <div col-6>
+                      <button *ngIf="index != (questions.length -1)" [disabled]="!answers[i].comments && answers[i].status != true" ion-button color="secondary" (click)="goNext(i+1)" item-end>
+                        <ion-label>
+                          Próxima
+                        </ion-label>
+                      </button>
+                      <button *ngIf="index === (questions.length -1)" [disabled]="!answers[i].comments && answers[i].status != true" ion-button color="secondary" (click)="finishEvaluate()" item-end>
+                        <ion-label>
+                          Concluir
+                        </ion-label>
+                      </button>
+                    </div>
+                  </ion-row>    
+                  
+                </ion-list>
+              </form>
+            </ion-card-content>      
+          </ion-card>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>  
 </ion-content>
