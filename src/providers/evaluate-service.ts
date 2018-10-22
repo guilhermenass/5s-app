@@ -12,8 +12,8 @@ import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
 @Injectable()
 export class EvaluateServiceProvider {
 
-    //apiUrl = 'https://api-5s.herokuapp.com/evaluations';
-    apiUrl = 'http://localhost:4000/evaluations';
+    apiUrl = 'https://api-5s.herokuapp.com/evaluations';
+   // apiUrl = 'http://localhost:4000/evaluations';
 
   constructor(public http: HttpClient) {}  
 
