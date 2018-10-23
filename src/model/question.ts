@@ -3,6 +3,9 @@ export class Question {
   title: string;
   description: string;
 
-  constructor(){
+  constructor(questions_id?:number, title?: string, description?:string){
+    this.questions_id = questions_id;
+    this.title = title;
+    this.description = description;
   }
 }

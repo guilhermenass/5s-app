@@ -52,6 +52,7 @@ export class EvaluateExecutionPage {
   }
 
   finishEvaluate(){
+    console.log('this', this.evaluation)
     const finishEvaluationDto = new FinishEvaluationDto(
       this.answers,
       this.questions,

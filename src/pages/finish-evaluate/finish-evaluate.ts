@@ -14,8 +14,8 @@ import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
 })
 export class FinishEvaluatePage {
 
-  answers: Array<Answer>;
-  questions: Array<Question>;
+  answers = new Array<Answer>();
+  questions = new Array<Question>();
   evaluateId: number;
 
   evaluationDto: FinishEvaluationDto;
@@ -43,6 +43,7 @@ export class FinishEvaluatePage {
 
     this.evaluationDto = this.navParams.get('evaluationDto');
 
+    console.log('evaluationDto',this.evaluationDto);
     this.evaluationDto.answers.forEach(answer =>
     { 
       if(answer.status){
@@ -50,6 +51,12 @@ export class FinishEvaluatePage {
       }else{
         this.answerNonCompliance++;
       }
+      this.answers.push(answer);
+    });
+
+    this.evaluationDto.questions.forEach(q => {
+      console.log('qqqq', q);
+      this.questions.push(q);
     })
     this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
   }
@@ -61,25 +68,27 @@ export class FinishEvaluatePage {
         return x.status == false
      })
     }
+    console.log('emaildto',emailDto);
     this.evaluateService.finishEvaluate(this.evaluationDto.answers)
       .subscribe(() => {
         this.evaluateService.updateStatus(1, this.evaluationDto.answers[0].evaluateId)
         .subscribe((res) => {
-          this.presentAlert(res['message']);
           this.emailService.sendEmailWithNonCompliances(emailDto)
-          .subscribe(() => {})
+          .subscribe(() => {this.presentAlert(res['message']);})
         })
       });
   }
 
   finishEvaluate(){
+
     this.evaluateService.finishEvaluate(this.evaluationDto.answers)
     .subscribe(res => {
       this.evaluateService.updateStatus(2, this.evaluationDto.answers[0].evaluateId)
       .subscribe(res => {
         this.presentAlert(res['message']);
         this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail)
-        .subscribe(() => {})
+        .subscribe(() => {
+        })
       });
     });
   }
