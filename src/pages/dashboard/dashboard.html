@@ -16,20 +16,20 @@
   <ion-grid>
     <ion-card > 
       <ion-card-header style="background-color: #81F79F; opacity:0.8" (click)="changeShowEvaluateSuccess()">
-        Concluidas ({{concluded.length}})
+        Concluidas ({{completed.length}})
       </ion-card-header>
       
       <ion-card-content *ngIf="showEvaluatesSuccess">
         <ion-list>
-          <ion-item *ngFor="let finish of concluded">
+          <ion-item *ngFor="let finish of completed" text-wrap>
             <ion-avatar item-start>                     
-              <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
+              <ion-icon name="checkbox" style="color: #18d100"></ion-icon>                      
             </ion-avatar>
-
-            <h2>{{finish.audit_title}} - {{finish.enviroment_name}}- {{finish.enviroment_block}}</h2>
+            <h2>{{finish.audit_title}} </h2>
+            <h2>{{finish.enviroment_name}} - {{finish.enviroment_type_name}} - {{finish.enviroment_block}}</h2>
             <h3>Concluída em {{finish.audit_due_date}}</h3>
           </ion-item>
-          <p *ngIf="concluded.length == 0"> Nenhuma inspeção concluida</p>            
+          <p *ngIf="completed.length == 0"> Nenhuma inspeção concluida</p>            
         </ion-list>
 
       </ion-card-content>

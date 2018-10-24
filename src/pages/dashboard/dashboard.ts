@@ -22,7 +22,7 @@ export class  DashboardPage {
   evaluates: EvaluationExecutionDto[];
   pending: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
   delayed: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
-  concluded: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
+  completed: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -45,7 +45,7 @@ export class  DashboardPage {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
         if(evaluate.status === 2){
-          this.concluded.push(evaluate);
+          this.completed.push(evaluate);
         }else if(new Date(evaluate.audit_due_date) >= new Date()){
           this.pending.push(evaluate)
         } else {
