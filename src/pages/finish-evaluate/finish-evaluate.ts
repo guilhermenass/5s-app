@@ -58,14 +58,14 @@ export class FinishEvaluatePage {
     this.evaluateService.finishEvaluate(this.evaluationDto.answers)
     .subscribe(() => {
       if(this.answerNonCompliance > 0) 
-        this.updateStatus(1);
+        this.updateEvaluation(1);
       else
-        this.updateStatus(2);
+        this.updateEvaluation(2);
     })
   }
 
-  updateStatus(status) {
-    this.evaluateService.updateStatus(status, this.evaluationDto.answers[0].evaluateId)
+  updateEvaluation(status) {
+    this.evaluateService.updateEvaluation(status, this.evaluationDto.answers[0].evaluateId)
       .subscribe((res) => {
         this.presentAlert(res['message'])
         this.verifyEmail();

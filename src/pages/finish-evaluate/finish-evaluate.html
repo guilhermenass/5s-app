@@ -41,7 +41,7 @@
               <h2 *ngFor="let question of questions; let i = index" [style.color]="answers[i].status == true ? 'green' : 'red'" >{{i + 1}} - {{question.Question.title}}</h2>
             </ion-col>
           </ion-row>
-          <button *ngIf="answerNonCompliance > 0" ion-button col-12 color="secondary" (click)="generateActionPlan()">
+          <button *ngIf="answerNonCompliance > 0" ion-button col-12 color="secondary" (click)="finishEvaluate()">
             <ion-label>
                 Gerar Plano de Ação
             </ion-label>
