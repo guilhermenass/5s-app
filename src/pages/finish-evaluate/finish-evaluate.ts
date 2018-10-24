@@ -54,34 +54,34 @@ export class FinishEvaluatePage {
     this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
   }
 
-  generateActionPlan(){
-    var emailDto = {
-      email: this.evaluationDto.evaluation.userEmail,
-      nonCompliances: this.evaluationDto.answers.filter(x => {
-        return x.status == false
-     })
-    }
-    this.evaluateService.finishEvaluate(this.evaluationDto.answers)
-      .subscribe(() => {
-        this.evaluateService.updateStatus(1, this.evaluationDto.answers[0].evaluateId)
-        .subscribe((res) => {
-          this.presentAlert(res['message']);
-          this.emailService.sendEmailWithNonCompliances(emailDto)
-          .subscribe(() => {})
-        })
-      });
-  }
-
   finishEvaluate(){
     this.evaluateService.finishEvaluate(this.evaluationDto.answers)
-    .subscribe(res => {
-      this.evaluateService.updateStatus(2, this.evaluationDto.answers[0].evaluateId)
-      .subscribe(res => {
-        this.presentAlert(res['message']);
-        this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail)
-        .subscribe(() => {})
-      });
-    });
+    .subscribe(() => {
+      if(this.answerNonCompliance > 0) 
+        this.updateEvaluation(1);
+      else
+        this.updateEvaluation(2);
+    })
+  }
+
+  updateEvaluation(status) {
+    this.evaluateService.updateEvaluation(status, this.evaluationDto.answers[0].evaluateId)
+      .subscribe((res) => {
+        this.presentAlert(res['message'])
+        this.verifyEmail();
+      })
+  }
+
+  verifyEmail() {
+    if(this.answerNonCompliance > 0) {
+      this.emailService.sendEmailWithNonCompliances({
+        email: this.evaluationDto.evaluation.userEmail,
+        nonCompliances: this.evaluationDto.answers.filter(x => {
+          return x.status == false
+        })
+      }).subscribe(() => {})
+    } else
+      this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail).subscribe(() => {});
   }
 
   presentAlert(message?: string) {
