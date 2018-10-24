@@ -59,7 +59,7 @@ export class EvaluateServiceProvider {
         return Observable.throw(error || 'Server error');
     }
 
-    updateStatus(status: number, evaluationId: number) {
+    updateEvaluation(status: number, evaluationId: number) {
         return this.http.put(`${this.apiUrl}/${evaluationId}`, {status: status});
     }
 }
