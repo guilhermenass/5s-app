@@ -1,14 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { QuestionServiceProvider } from '../../providers/question-service';
-import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
 import { Question } from '../../model/question';
 import { Answer } from '../../model/answer';
-import { EvaluationDto } from '../../dto/evaluation-dto';
-import { FinishEvaluatePage } from '../finish-evaluate/finish-evaluate';
 import { QuestionResponsible } from '../../model/questionResponsible';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
-import { FinishActionPlanPage } from '../finish-action-plan/finish-action-plan';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { EmailService } from '../../providers/email-service';
 import { ResponsibleDashboardPage } from '../responsible-dashboard/responsible-dashboard';

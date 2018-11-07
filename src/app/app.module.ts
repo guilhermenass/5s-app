@@ -28,7 +28,6 @@ import { EvaluateExecutionPage } from '../pages/evaluate-execution/evaluate-exec
 import { EvaluateServiceProvider } from '../providers/evaluate-service';
 import { EmailService } from '../providers/email-service';
 import { EvaluateResponsibleResumePage } from '../pages/evaluate-responsible-resume/evaluate-responsible-resume';
-import { FinishActionPlanPage } from '../pages/finish-action-plan/finish-action-plan';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,6 @@ import { FinishActionPlanPage } from '../pages/finish-action-plan/finish-action-
     EvaluateResponsibleResumePage,
     EvaluateExecutionPage,
     FinishEvaluatePage,
-    FinishActionPlanPage,
     ExecuteActionPlanPage,
     UserConfigPage,
     UserProfilePage,
@@ -76,7 +74,6 @@ import { FinishActionPlanPage } from '../pages/finish-action-plan/finish-action-
     EvaluateResumePage,
     EvaluateResponsibleResumePage,
     FinishEvaluatePage,
-    FinishActionPlanPage,
     MainPage,
     ExpandableComponent
   ],
