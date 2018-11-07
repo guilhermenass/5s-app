@@ -3,13 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ExecuteActionPlanPage} from '../execute-action-plan/execute-action-plan';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
-
-/**
- * Generated class for the ResponsibleDashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Evaluate } from '../../model/evaluate';
+import { EvaluateResponsibleResumePage } from '../evaluate-responsible-resume/evaluate-responsible-resume';
 
 @IonicPage()
 @Component({
@@ -26,11 +21,14 @@ export class ResponsibleDashboardPage {
   showEvaluatesPending = false;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public evaluateService: EvaluateServiceProvider) {
-  }
+              public evaluateService: EvaluateServiceProvider) { }
 
   ionViewDidLoad() {
     this.init();
+  }
+
+  goToEvaluateResume(evaluation: EvaluationExecutionDto){
+    this.navCtrl.push(EvaluateResponsibleResumePage,{evaluation:evaluation});
   }
 
   init(){
@@ -63,4 +61,5 @@ export class ResponsibleDashboardPage {
       this.showEvaluatesPending = false;      
     }
   }
+
 }

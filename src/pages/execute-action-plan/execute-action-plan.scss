@@ -1,16 +1,43 @@
 page-execute-action-plan {
+   
+    ion-card {
+        position: relative;
+        text-align: center;
+    }
 
     ion-title{
         text-align: center;
     }
 
-    ion-card {
-        text-align: center;
+    .evaluate-execution-container{
+        margin: auto;
+        margin-top: 15%
     }
 
     .button-form{
         margin-top: 5%;
         background: rgba(0, 128, 0, 0.83)
+    }
+
+    .evaluate-execution-comments {
+        width: calc(100% - 10px);
+        border: 1px solid rgba(142, 150, 142, 0.541);
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .evaluate-execution-notes-icon{
+        font-size: 60px;
+        font-size: 60px
+    }
+
+    .md-thumbs{
+        display: inline-flex;
+    }
+
+    .md-thumbs-down {
+        margin-top: 12px;
+        margin-right: 32px
     }
 
 }

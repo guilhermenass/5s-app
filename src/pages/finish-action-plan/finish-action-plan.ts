@@ -9,10 +9,10 @@ import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
 
 @IonicPage()
 @Component({
-  selector: 'page-finish-evaluate',
-  templateUrl: 'finish-evaluate.html',
+  selector: 'page-finish-action-plan',
+  templateUrl: 'finish-action-plan.html',
 })
-export class FinishEvaluatePage {
+export class FinishActionPlanPage {
 
   answers: Array<Answer>;
   questions: Array<Question>;
@@ -59,23 +59,13 @@ export class FinishEvaluatePage {
   }
 
   finishEvaluate(){
-    if(this.evaluationDto.evaluation.status === 0){
-      this.evaluateService.finishEvaluate(this.evaluationDto.answers)
-        .subscribe(() => {
-          if(this.answerNonCompliance > 0) 
-            this.updateEvaluation(1);
-          else
-            this.updateEvaluation(2);
-        });
-    } else {
-      this.evaluateService.updateAnswersEvaluate(this.evaluationDto.answers)
-      .subscribe(() => {
-        if(this.answerNonCompliance > 0) 
-          this.updateEvaluation(1);
-        else
-          this.updateEvaluation(2);
-      });
-    }
+    this.evaluateService.finishEvaluate(this.evaluationDto.answers)
+    .subscribe(() => {
+      if(this.answerNonCompliance > 0) 
+        this.updateEvaluation(1);
+      else
+        this.updateEvaluation(2);
+    })
   }
 
   updateEvaluation(status) {

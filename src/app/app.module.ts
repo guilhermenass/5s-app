@@ -27,6 +27,8 @@ import { EvaluateResumePage } from '../pages/evaluate-resume/evaluate-resume';
 import { EvaluateExecutionPage } from '../pages/evaluate-execution/evaluate-execution';
 import { EvaluateServiceProvider } from '../providers/evaluate-service';
 import { EmailService } from '../providers/email-service';
+import { EvaluateResponsibleResumePage } from '../pages/evaluate-responsible-resume/evaluate-responsible-resume';
+import { FinishActionPlanPage } from '../pages/finish-action-plan/finish-action-plan';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,10 @@ import { EmailService } from '../providers/email-service';
     FooterTabsPage,
     AuditsPage,
     EvaluateResumePage,
+    EvaluateResponsibleResumePage,
     EvaluateExecutionPage,
     FinishEvaluatePage,
+    FinishActionPlanPage,
     ExecuteActionPlanPage,
     UserConfigPage,
     UserProfilePage,
@@ -70,7 +74,9 @@ import { EmailService } from '../providers/email-service';
     UserConfigPage,
     UserProfilePage,
     EvaluateResumePage,
+    EvaluateResponsibleResumePage,
     FinishEvaluatePage,
+    FinishActionPlanPage,
     MainPage,
     ExpandableComponent
   ],

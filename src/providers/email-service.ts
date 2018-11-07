@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class EmailService {
 
-   // private readonly _apiUrl: string = 'http://localhost:4000/email';
-    private readonly _apiUrl: string = 'https://api-5s.herokuapp.com/email';
+   // private readonly _apiUrl: string = 'https://api-5s.herokuapp.com/email';
+    private readonly _apiUrl: string = 'http://localhost:4000/email';
     
     constructor(private _httpClient: HttpClient) {
         this._httpClient = _httpClient;

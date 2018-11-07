@@ -15,7 +15,7 @@ import { EvaluationDto } from '../../dto/evaluation-dto';
 })
 export class EvaluateExecutionPage {
 
-  private evaluation: FinishEvaluationDto;
+  private evaluation: EvaluationExecutionDto;
   questions = new Array<Question>();
   answers = new Array<Answer>();
 
@@ -28,12 +28,21 @@ export class EvaluateExecutionPage {
   }
 
   ionViewDidLoad() {
-    this.questionService.findQuestionByEnvironmentTypeId(this.evaluation['enviroment_type_id']).subscribe(x => {
-      this.questions = x;
-      x.forEach(question => {
-        this.answers.push(new Answer(this.evaluation['id'], question.questions_id, question['Question'].title));
-      })
-    });
+    if(this.evaluation.status === 0){
+      this.questionService.findQuestionByEnvironmentTypeId(this.evaluation.enviroment_type_id).subscribe(x => {
+        this.questions = x;
+        x.forEach(question => {
+          this.answers.push(new Answer(undefined, this.evaluation.id, question.id, question.title));
+        })
+      });
+    }else {
+      this.questionService.findQuestionsRevaluationByEvaluationId(this.evaluation.id).subscribe(x => {
+        this.questions = x;
+        x.forEach(question => {
+          this.answers.push(new Answer( question['answerid'], this.evaluation.id, question.id, question.title));
+        })
+      });
+    }
   }
 
   @ViewChild('myInput') myInput: ElementRef;
@@ -56,8 +65,9 @@ export class EvaluateExecutionPage {
       this.answers,
       this.questions,
       new EvaluationDto(
-        this.evaluation['id'],
-        this.evaluation['email']
+        this.evaluation.id,
+        this.evaluation.email,
+        this.evaluation.status
         )
       )
     this.navCtrl.push(FinishEvaluatePage, {evaluationDto: finishEvaluationDto});

@@ -5,13 +5,6 @@ import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { Evaluate } from '../../model/evaluate';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 
-/**
- * Generated class for the DashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-dashboard',
@@ -23,22 +16,22 @@ export class  DashboardPage {
   pending: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
   delayed: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
   concluded: EvaluationExecutionDto[] = new Array<EvaluationExecutionDto>();
-
+  
+  showEvaluatesSuccess = false;
+  showEvaluatesDelayed = false;
+  showEvaluatesPending = false;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public evaluateService: EvaluateServiceProvider) {}
 
-  showEvaluatesSuccess = false;
-  showEvaluatesDelayed = false;
-  showEvaluatesPending = false;
-
-  goToEvaluateResume(evaluation: Evaluate){
-    this.navCtrl.push(EvaluateResumePage,{evaluation:evaluation});
-  }
-
   ionViewDidLoad() {
     this.init();
   }
+  
+  goToEvaluateResume(evaluation: EvaluationExecutionDto){
+    this.navCtrl.push(EvaluateResumePage,{evaluation:evaluation});
+  }
+
 
   init(){
     this.evaluateService.searchAppraiser().subscribe(x => {
@@ -47,13 +40,12 @@ export class  DashboardPage {
         if(evaluate.status === 2){
           this.concluded.push(evaluate);
         }else if(new Date(evaluate.audit_due_date) >= new Date()){
-          this.pending.push(evaluate)
+          this.pending.push(evaluate);
         } else {
           this.delayed.push(evaluate);
         }
       });
     });
-
   }
   changeShowEvaluateSuccess(){
     if(!this.showEvaluatesSuccess){
