@@ -1,14 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { QuestionServiceProvider } from '../../providers/question-service';
-import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
 import { Question } from '../../model/question';
 import { Answer } from '../../model/answer';
-import { EvaluationDto } from '../../dto/evaluation-dto';
-import { FinishEvaluatePage } from '../finish-evaluate/finish-evaluate';
 import { QuestionResponsible } from '../../model/questionResponsible';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
-import { FinishActionPlanPage } from '../finish-action-plan/finish-action-plan';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { EmailService } from '../../providers/email-service';
 import { ResponsibleDashboardPage } from '../responsible-dashboard/responsible-dashboard';
@@ -45,9 +41,6 @@ export class ExecuteActionPlanPage {
   load() {
     this.questionService.findNonCompliancesByEvaluationId(this.evaluation.id).subscribe(x => {
       this.questionsResponsible = x;
-      // x.forEach(question => {
-      //   this.answers.push(new Answer(this.evaluation.id, question.id, question.title, question.comments));
-      // });
     });
   }
 
@@ -60,12 +53,12 @@ export class ExecuteActionPlanPage {
     }
   }
 
-  /**Método responsável por finalizar a avaliaçã */
+  /**Método responsável por finalizar a avaliação */
     finishEvaluate() {
       this.evaluateService.updateEvaluation(3, this.evaluation.id)
         .subscribe((res) => {
           this.presentAlert(res['message'])
-          //    this.verifyEmail();
+          this.verifyEmail(this.evaluation.email);
         });
     }
 
@@ -85,17 +78,7 @@ export class ExecuteActionPlanPage {
     alert.present();
   }
 
-    /*
-    verifyEmail() {
-      if(this.answerNonCompliance > 0) {
-        this.emailService.sendEmailWithNonCompliances({
-          email: this.evaluationDto.evaluation.userEmail,
-          nonCompliances: this.evaluationDto.answers.filter(x => {
-            return x.status == false
-          })
-        }).subscribe(() => {})
-      } else
-        this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail).subscribe(() => {});
-    }
-  */
+    verifyEmail(email: string) {
+      this.emailService.sendRevaluationEmail(email)
+      .subscribe(() => {})}
 }
