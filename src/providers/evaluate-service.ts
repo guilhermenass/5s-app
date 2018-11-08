@@ -13,7 +13,7 @@ import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
 export class EvaluateServiceProvider {
 
     apiUrl = 'https://api-5s.herokuapp.com/evaluations';
-   // apiUrl = 'http://localhost:4000/evaluations';
+  //  apiUrl = 'http://localhost:4000/evaluations';
 
   constructor(public http: HttpClient) {}  
 
@@ -43,6 +43,15 @@ export class EvaluateServiceProvider {
             })
         };
         return this.http.post(`${this.apiUrl}/finish`, answers, httpOptions);
+    }
+
+    updateAnswersEvaluate(answers: Array<Answer>) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json'
+            })
+        };
+        return this.http.put(`${this.apiUrl}/finish`, answers, httpOptions);
     }
 
    generateActionPlan() {

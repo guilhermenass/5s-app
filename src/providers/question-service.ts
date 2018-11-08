@@ -7,6 +7,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/throw';
 import { HttpClient } from '@angular/common/http';
 import { Question } from '../model/question';
+import { QuestionResponsible } from '../model/questionResponsible';
 
 @Injectable()
 export class QuestionServiceProvider {
@@ -15,7 +16,7 @@ export class QuestionServiceProvider {
 
   constructor(public http: HttpClient) {}  
 
-    findQuestionByEnvironmentTypeId(id: number): Observable<Array<Question>> {
+    findQuestionByEnvironmentTypeId(id: number): Observable<Question[]> {
         return this.http.get(this.apiUrl + `/enviromentType/${id}`)
             .map((response: Response) => {
              return response;
@@ -23,6 +24,21 @@ export class QuestionServiceProvider {
             .catch(this.handleError);
     }
 
+    findNonCompliancesByEvaluationId(id: number): Observable<Array<QuestionResponsible>> {
+        return this.http.get(this.apiUrl + `/nonCompliances/${id}`)
+            .map((response: Response) => {
+             return response;
+            })
+            .catch(this.handleError);
+    }
+
+    findQuestionsRevaluationByEvaluationId(id: number): Observable<Array<Question>> {
+        return this.http.get(this.apiUrl + `/revaluation/${id}`)
+            .map((response: Response) => {
+             return response;
+            })
+            .catch(this.handleError);
+    }
     
     private handleError(error: Response) {
         console.log('error ',error);

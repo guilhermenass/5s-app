@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ExecuteActionPlanPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { QuestionServiceProvider } from '../../providers/question-service';
+import { Question } from '../../model/question';
+import { Answer } from '../../model/answer';
+import { QuestionResponsible } from '../../model/questionResponsible';
+import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
+import { EvaluateServiceProvider } from '../../providers/evaluate-service';
+import { EmailService } from '../../providers/email-service';
+import { ResponsibleDashboardPage } from '../responsible-dashboard/responsible-dashboard';
 
 @IonicPage()
 @Component({
@@ -15,29 +16,82 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ExecuteActionPlanPage {
 
-  items: any = [];
-  itemExpandHeight: number = 100;
+  private readonly EVALUATION_SAVED_SUCCESSFUL = 'A avaliação foi concluída com sucesso';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.items = [
-      {expanded: false},
-      {expanded: false}
-    ];
+  private evaluation: EvaluationExecutionDto;
+  private index = -1;
+  questionsResponsible = new Array<QuestionResponsible>();
+  questions = new Array<Question>();
+  answers = new Array<Answer>();
+
+  constructor(public navCtrl: NavController,
+    private questionService: QuestionServiceProvider,
+    public evaluateService: EvaluateServiceProvider,
+    public emailService: EmailService,
+    public navParams: NavParams,
+    private alertCtrl: AlertController) {
+    this.evaluation = navParams.get('evaluation');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ExecuteActionPlanPage');
+    this.load();
   }
 
-  expandItem(item){
-    this.items.map((listItem) => {
-        if(item == listItem){
-            listItem.expanded = true;
-        } else {
-            listItem.expanded = false;
+  /** Método responsável por buscar no back-end as questões e o comentário do avaliador em cada questão não conforme */
+  load() {
+    this.questionService.findNonCompliancesByEvaluationId(this.evaluation.id).subscribe(x => {
+      this.questionsResponsible = x;
+      // x.forEach(question => {
+      //   this.answers.push(new Answer(this.evaluation.id, question.id, question.title, question.comments));
+      // });
+    });
+  }
+
+  /**Método responsável por expandir e exibir o comentário do avaliador na questão selecionada*/
+  expandNonCompliance(questionId: number) {
+    if (this.index != questionId) {
+      this.index = questionId;
+    } else {
+      this.index = -1;
+    }
+  }
+
+  /**Método responsável por finalizar a avaliaçã */
+    finishEvaluate() {
+      this.evaluateService.updateEvaluation(3, this.evaluation.id)
+        .subscribe((res) => {
+          this.presentAlert(res['message'])
+          //    this.verifyEmail();
+        });
+    }
+
+  presentAlert(message?: string) {
+    let alert = this.alertCtrl.create({
+      title: 'Avaliação Finalizada',
+      subTitle: message ? message : this.EVALUATION_SAVED_SUCCESSFUL,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.setRoot(ResponsibleDashboardPage);
+          }
         }
-        return listItem;
-    }); 
+      ]
+    });
+    alert.present();
   }
 
+    /*
+    verifyEmail() {
+      if(this.answerNonCompliance > 0) {
+        this.emailService.sendEmailWithNonCompliances({
+          email: this.evaluationDto.evaluation.userEmail,
+          nonCompliances: this.evaluationDto.answers.filter(x => {
+            return x.status == false
+          })
+        }).subscribe(() => {})
+      } else
+        this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail).subscribe(() => {});
+    }
+  */
 }

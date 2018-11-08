@@ -43,6 +43,9 @@ export class FinishEvaluatePage {
 
     this.evaluationDto = this.navParams.get('evaluationDto');
 
+    this.answers = this.evaluationDto.answers;
+    this.questions = this.evaluationDto.questions;
+    
     this.evaluationDto.answers.forEach(answer =>
     { 
       if(answer.status){
@@ -50,18 +53,29 @@ export class FinishEvaluatePage {
       }else{
         this.answerNonCompliance++;
       }
-    })
+    });
+
     this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
   }
 
   finishEvaluate(){
-    this.evaluateService.finishEvaluate(this.evaluationDto.answers)
-    .subscribe(() => {
-      if(this.answerNonCompliance > 0) 
-        this.updateEvaluation(1);
-      else
-        this.updateEvaluation(2);
-    })
+    if(this.evaluationDto.evaluation.status === 0){
+      this.evaluateService.finishEvaluate(this.evaluationDto.answers)
+        .subscribe(() => {
+          if(this.answerNonCompliance > 0) 
+            this.updateEvaluation(1);
+          else
+            this.updateEvaluation(2);
+        });
+    } else {
+      this.evaluateService.updateAnswersEvaluate(this.evaluationDto.answers)
+      .subscribe(() => {
+        if(this.answerNonCompliance > 0) 
+          this.updateEvaluation(1);
+        else
+          this.updateEvaluation(2);
+      });
+    }
   }
 
   updateEvaluation(status) {

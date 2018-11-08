@@ -1,8 +1,13 @@
 export class Question {
-  questions_id: number;
+  id: number;
   title: string;
   description: string;
+  answerId: number;
 
-  constructor(){
+  constructor(id?: number, title?: string, description?: string, answerId?: number){
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.answerId = answerId;
   }
 }

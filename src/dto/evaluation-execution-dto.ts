@@ -9,11 +9,13 @@ export class EvaluationExecutionDto {
     audit_title: string;
     audit_initial_date: Date;
     audit_due_date: Date;
-    userEmail: string;
+    email: string;
+    usersId: number;
 
     constructor(id: number, status: number, finish_date: Date,
                 enviroment_name: string, enviroment_block: string, enviroment_type_id: number, 
-                audit_title: string, audit_initial_date: Date, audit_due_date: Date, userEmail: string){
+                audit_title: string, audit_initial_date: Date, audit_due_date: Date, 
+                email: string, usersId: number){
 
         this.id = id;
         this.status = status;
@@ -24,6 +26,7 @@ export class EvaluationExecutionDto {
         this.audit_title = audit_title;
         this.audit_initial_date = audit_initial_date;
         this.audit_due_date = audit_due_date;
-        this.userEmail = userEmail;
+        this.email = email;
+        this.usersId = usersId;
     }
 }
