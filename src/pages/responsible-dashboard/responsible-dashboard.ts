@@ -30,6 +30,10 @@ export class ResponsibleDashboardPage {
   }
 
   init(){
+    this.load();
+  }
+
+  load(){
     this.evaluateService.searchResponsible().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{

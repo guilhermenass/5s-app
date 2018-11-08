@@ -12,8 +12,8 @@ import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
 @Injectable()
 export class EvaluateServiceProvider {
 
-    apiUrl = 'https://api-5s.herokuapp.com/evaluations';
-  //  apiUrl = 'http://localhost:4000/evaluations';
+  //  apiUrl = 'https://api-5s.herokuapp.com/evaluations';
+    apiUrl = 'http://localhost:4000/evaluations';
 
   constructor(public http: HttpClient) {}  
 
@@ -30,7 +30,6 @@ export class EvaluateServiceProvider {
         return this.http.get(`${this.apiUrl}/responsible`)
             .map((response: Response) => 
             {
-                console.log('resp', response)
                 return response;
             })
             .catch(this.handleError);      
@@ -68,7 +67,7 @@ export class EvaluateServiceProvider {
         return Observable.throw(error || 'Server error');
     }
 
-    updateEvaluation(status: number, evaluationId: number) {
-        return this.http.put(`${this.apiUrl}/${evaluationId}`, {status: status});
+    updateEvaluation(status: number, evaluationId: number, responsibleId) {
+        return this.http.put(`${this.apiUrl}/${evaluationId}`, {status: status, responsibleId: responsibleId});
     }
 }

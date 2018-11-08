@@ -33,6 +33,10 @@ export class  DashboardPage {
 
 
   init(){
+    this.load();
+  }
+
+  load(){
     this.evaluateService.searchAppraiser().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{

@@ -53,9 +53,11 @@ export class ExecuteActionPlanPage {
     }
   }
 
-  /**Método responsável por finalizar a avaliação */
+  /**Método responsável por finalizar a avaliação 
+   * @param responsible_id no contexto de plano de ação é avaliador
+  */
     finishEvaluate() {
-      this.evaluateService.updateEvaluation(3, this.evaluation.id)
+      this.evaluateService.updateEvaluation(3, this.evaluation.id, this.evaluation.responsible_id)
         .subscribe((res) => {
           this.presentAlert(res['message'])
           this.verifyEmail(this.evaluation.email);
