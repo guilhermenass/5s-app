@@ -78,10 +78,7 @@ export class FinishEvaluatePage {
     }
   }
 
-  /**
-   * @param responsible_id no contexto de gerar plano de ação responsibleId é o usuario responsável do ambiente
-   * @param responsible_id no contexto de finalizar avaliação é usuario avaliador 
-   */
+
   updateEvaluation(status) {
     let userId = this.getUserId(status);
     this.evaluateService.updateEvaluation(status, this.evaluationDto.answers[0].evaluateId, userId)
