@@ -22,4 +22,9 @@ export class EmailService {
         if(emailDto)
             return this._httpClient.post(`${this._apiUrl}/nonCompliances`, {evaluationDto: emailDto});
     }
+
+    sendRevaluationEmail(email: string) {
+        if(email) 
+            return this._httpClient.post(`${this._apiUrl}/revaluation`, {email: email});
+    }
 }

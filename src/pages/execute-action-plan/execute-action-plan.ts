@@ -41,9 +41,6 @@ export class ExecuteActionPlanPage {
   load() {
     this.questionService.findNonCompliancesByEvaluationId(this.evaluation.id).subscribe(x => {
       this.questionsResponsible = x;
-      // x.forEach(question => {
-      //   this.answers.push(new Answer(this.evaluation.id, question.id, question.title, question.comments));
-      // });
     });
   }
 
@@ -56,12 +53,12 @@ export class ExecuteActionPlanPage {
     }
   }
 
-  /**Método responsável por finalizar a avaliaçã */
+  /**Método responsável por finalizar a avaliação */
     finishEvaluate() {
       this.evaluateService.updateEvaluation(3, this.evaluation.id)
         .subscribe((res) => {
           this.presentAlert(res['message'])
-          //    this.verifyEmail();
+          this.verifyEmail(this.evaluation.email);
         });
     }
 
@@ -81,17 +78,7 @@ export class ExecuteActionPlanPage {
     alert.present();
   }
 
-    /*
-    verifyEmail() {
-      if(this.answerNonCompliance > 0) {
-        this.emailService.sendEmailWithNonCompliances({
-          email: this.evaluationDto.evaluation.userEmail,
-          nonCompliances: this.evaluationDto.answers.filter(x => {
-            return x.status == false
-          })
-        }).subscribe(() => {})
-      } else
-        this.emailService.sendEmailSuccessfulEvaluation(this.evaluationDto.evaluation.userEmail).subscribe(() => {});
-    }
-  */
+    verifyEmail(email: string) {
+      this.emailService.sendRevaluationEmail(email)
+      .subscribe(() => {})}
 }
