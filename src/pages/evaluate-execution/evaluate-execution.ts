@@ -67,7 +67,9 @@ export class EvaluateExecutionPage {
       new EvaluationDto(
         this.evaluation.id,
         this.evaluation.email,
-        this.evaluation.status
+        this.evaluation.status, 
+        this.evaluation.responsible_id,
+        this.evaluation.users_id
         )
       )
     this.navCtrl.push(FinishEvaluatePage, {evaluationDto: finishEvaluationDto});
