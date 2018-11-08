@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { EvaluateExecutionPage } from '../evaluate-execution/evaluate-execution';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
-import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
 import { ExecuteActionPlanPage } from '../execute-action-plan/execute-action-plan';
  @IonicPage()
 @Component({

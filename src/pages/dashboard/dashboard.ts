@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EvaluateResumePage } from '../evaluate-resume/evaluate-resume'
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
-import { Evaluate } from '../../model/evaluate';
 import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 
 @IonicPage()
