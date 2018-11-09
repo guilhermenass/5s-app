@@ -78,24 +78,18 @@ export class FinishEvaluatePage {
     }
   }
 
-  /**
-   * @param responsible_id no contexto de gerar plano de ação responsibleId é o usuario responsável do ambiente
-   * @param responsible_id no contexto de finalizar avaliação é usuario avaliador 
-   */
+
   updateEvaluation(status) {
-    if( status === 2){
-      this.evaluateService.updateEvaluation(status, this.evaluationDto.answers[0].evaluateId, this.evaluationDto.evaluation.users_id)
-        .subscribe((res) => {
-          this.presentAlert(res['message'])
-          this.verifyEmail();
-        });
-    } else {
-      this.evaluateService.updateEvaluation(status, this.evaluationDto.answers[0].evaluateId, this.evaluationDto.evaluation.responsibleId)
-        .subscribe((res) => {
-          this.presentAlert(res['message'])
-          this.verifyEmail();
-        });
-    }
+    let userId = this.getUserId(status);
+    this.evaluateService.updateEvaluation(status, this.evaluationDto.answers[0].evaluateId, userId)
+    .subscribe((res) => {
+      this.presentAlert(res['message'])
+      this.verifyEmail();
+    });
+  }
+
+  getUserId(status: number): number {
+    return status === 2 ? this.evaluationDto.evaluation.users_id : this.evaluationDto.evaluation.responsibleId
   }
 
   verifyEmail() {
