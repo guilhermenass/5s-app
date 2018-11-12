@@ -43,7 +43,10 @@
                         </button>
                       </div>
                       <div col-6>
-                        <button *ngIf="index != (questions.length -1)"  [disabled]="answers[i].status == null || answers[i].status == undefined"
+                        <button *ngIf="index != (questions.length -1)"  
+                          [disabled]="answers[i].status == null || 
+                                    answers[i].status == undefined || 
+                                    !answers[i].comments && answers[i].status != true"
                           ion-button color="secondary" (click)="goNext(i+1)" item-end>
                           <ion-label>
                             Próxima
