@@ -22,15 +22,11 @@ export class ResponsibleDashboardPage {
               public evaluateService: EvaluateServiceProvider) { }
 
   ionViewDidLoad() {
-    this.init();
+    this.load();
   }
 
   goToEvaluateResume(evaluation: EvaluationExecutionDto){
     this.navCtrl.push(EvaluateResponsibleResumePage,{evaluation:evaluation});
-  }
-
-  init(){
-    this.load();
   }
 
   load(){
