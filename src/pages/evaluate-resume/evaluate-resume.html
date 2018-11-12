@@ -18,9 +18,13 @@
               <h2>Auditoria: {{evaluation.audit_title}}</h2>
               <h2>Ambiente: {{evaluation.enviroment_name}} - Bloco {{evaluation.enviroment_block}}</h2>
               <h3>Data limite {{evaluation.audit_initial_date}} a {{evaluation.audit_due_date}}</h3>
+              <br>
+              <h3 *ngIf="validateDate()"  style="color:red">
+                Avaliação ainda não está disponível para execução
+              </h3>
             </div>
 
-            <button ion-button (click)="gotToEvaluateStart()" col-12 color="secondary">
+            <button *ngIf="!validateDate()" ion-button (click)="gotToEvaluateStart()" col-12 color="secondary">
               <ion-label>
                 Iniciar Avaliação
               </ion-label>

@@ -19,4 +19,10 @@ export class EvaluateResumePage {
     this.navCtrl.push(EvaluateExecutionPage,{evaluation: this.evaluation});
   }
 
+  validateDate(): boolean{
+    if(new Date(this.evaluation.audit_initial_date).toLocaleDateString() >= new Date().toLocaleDateString() ){
+      return true;
+    }
+    return false;
+  }
 }
