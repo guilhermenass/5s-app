@@ -25,19 +25,14 @@ export class EvaluateResumePage {
   }
 
   validateDate(): boolean{
-    let date1 = new Date();
-    date1.setHours(0);
-    date1.setMinutes(0);
-    date1.setSeconds(0);
-
+    let dateNow = new Date();
+    dateNow.setHours(0,0,0,0);
     let year = this.evaluation.audit_initial_date.substring(0,4);
     let month = this.evaluation.audit_initial_date.substring(5,7);
     let day = this.evaluation.audit_initial_date.substring(8,10);
  
-    let date2 = new Date(parseInt(year), parseInt(month) -1, parseInt(day),0,0,0,0);
-    if(date1 >= date2){
-      return true;
-    }
-    return false;
+    let initialEvaluateDate = new Date(parseInt(year), parseInt(month) -1, parseInt(day),0,0,0,0);
+    return dateNow >= initialEvaluateDate;
   }
+
 }
