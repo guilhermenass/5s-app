@@ -19,15 +19,15 @@
         Concluidas ({{concluded.length}})
       </ion-card-header>
       
-      <ion-card-content *ngIf="showEvaluatesSuccess">
+      <ion-card-content *ngIf="showEvaluatesSuccess" style="padding-left: 0.5px; padding-right: 0.5px">
         <ion-list>
           <ion-item *ngFor="let finish of concluded">
-            <ion-avatar item-start>                     
+            <div style="margin-right: 10px" item-start>                   
               <ion-icon name="md-checkbox" style="color: #18d100"></ion-icon>                      
-            </ion-avatar>
+            </div>
 
             <h2>{{finish.audit_title}} - {{finish.enviroment_name}}- {{finish.enviroment_block}}</h2>
-            <h3>Concluída em {{finish.audit_due_date}}</h3>
+            <h3>Concluída em {{finish.audit_due_date | date: 'dd/MM/yyyy'}}</h3>
           </ion-item>
           <p *ngIf="concluded.length == 0"> Nenhuma inspeção concluida</p>            
         </ion-list>
@@ -42,15 +42,15 @@
        Pendentes ({{pending.length}})
       </ion-card-header>
       
-      <ion-card-content *ngIf="showEvaluatesPending">   
+      <ion-card-content *ngIf="showEvaluatesPending"  style="padding-left: 0.5px; padding-right: 0.5px">   
         <ion-list>           
           <ion-item (click)="goToEvaluateResume(pend)" *ngFor="let pend of pending">
-            <ion-avatar item-start>                     
+            <div style="margin-right: 10px" item-start>                     
               <ion-icon name="md-information-circle" style="color: #fae20bf6"></ion-icon>                      
-            </ion-avatar>
+            </div>
 
             <h2> {{pend.audit_title}} - {{pend.enviroment_name}} - {{pend.enviroment_block}}</h2>
-            <h3>Data limite {{pend.audit_initial_date}} a {{pend.audit_due_date}}</h3>
+            <h3>Data limite {{pend.audit_initial_date | date: 'dd/MM/yyyy'}} a {{pend.audit_due_date | date: 'dd/MM/yyyy'}}</h3>
 
           </ion-item>
           <p *ngIf="pending.length == 0"> Nenhuma Inspeção Pendente</p>
@@ -65,14 +65,14 @@
         Atrasadas ({{delayed.length}})
       </ion-card-header>
       
-      <ion-card-content *ngIf="showEvaluatesDelayed">                  
+      <ion-card-content *ngIf="showEvaluatesDelayed" style="padding-left: 0.5px; padding-right: 0.5px">                  
         <ion-list>
           <ion-item (click)="goToEvaluateResume(delay)" *ngFor="let delay of delayed">
-            <ion-avatar item-start>                     
+            <div style="margin-right: 10px" item-start>                       
               <ion-icon name="md-warning" style="color: #fa2500"></ion-icon>                      
-            </ion-avatar>
-            <h2>{{delay.audit_title}} - {{delay.enviroment_name}} - {{delay.enviroment_block}}</h2>
-            <h3>Data limite {{delay.audit_initial_date}} a {{delay.audit_due_date}}</h3>
+            </div>
+              <h2>{{delay.audit_title}} - {{delay.enviroment_name}} - {{delay.enviroment_block}}</h2>
+              <h3>Data limite {{delay.audit_initial_date | date: 'dd/MM/yyyy'}} a {{delay.audit_due_date | date: 'dd/MM/yyyy'}}</h3>
 
           </ion-item> 
           <p *ngIf="delayed.length == 0"> Nenhuma inspeção atrasada</p>            
