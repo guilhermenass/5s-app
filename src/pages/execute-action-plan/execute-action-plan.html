@@ -12,9 +12,9 @@
           <h2 text-center style="color:white">Não conformidades</h2>
         </div>
         <ion-list>           
-          <ion-item (click)="expandNonCompliance(i)"  *ngFor="let question of questionsResponsible; let i = index">    
+          <ion-item (click)="expandNonCompliance(i)"  *ngFor="let question of questionsResponsible; let i = index" text-wrap text-justify>    
             <h2>{{question.title}}</h2>
-            <h3  *ngIf="i === index" style="color:red">{{question.comments}}</h3>
+            <h3 *ngIf="i === index" style="color:red">{{question.comments}}</h3>
           </ion-item>
         </ion-list>
         <button  ion-button col-12  color="secondary" (click)="finishEvaluate()" >
