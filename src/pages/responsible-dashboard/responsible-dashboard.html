@@ -38,10 +38,10 @@
             </div>
 
             <h2> {{pend.audit_title}} - {{pend.enviroment_name}} - {{pend.enviroment_block}}</h2>
-            <h3>Data limite {{pend.audit_initial_date}} a {{pend.audit_due_date}}</h3>
+            <h3>Data limite {{pend.audit_initial_date | date: 'dd/MM/yyyy'}} a {{pend.audit_due_date | date: 'dd/MM/yyyy'}}</h3>
 
           </ion-item>
-          <p *ngIf="pending.length == 0"> Nenhuma Inspeção Pendente</p>
+          <p *ngIf="pending.length == 0"> Nenhuma avaliação Pendente</p>
         </ion-list>
       </ion-card-content>
       
@@ -60,10 +60,10 @@
               <ion-icon name="md-warning" style="color: #fa2500"></ion-icon>                      
             </div>
             <h2>{{delay.audit_title}} - {{delay.enviroment_name}} - {{delay.enviroment_block}}</h2>
-            <h3>Data limite {{delay.audit_initial_date}} a {{delay.audit_due_date}}</h3>
+            <h3>Data limite {{delay.audit_initial_date | date: 'dd/MM/yyyy'}} a {{delay.audit_due_date | date: 'dd/MM/yyyy'}}</h3>
 
           </ion-item> 
-          <p *ngIf="delayed.length == 0"> Nenhuma inspeção atrasada</p>            
+          <p *ngIf="delayed.length == 0"> Nenhuma avaliação atrasada</p>            
           
         </ion-list>
       </ion-card-content>
