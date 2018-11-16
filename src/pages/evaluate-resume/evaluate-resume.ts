@@ -11,8 +11,13 @@ import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 export class EvaluateResumePage {
 
   evaluation: EvaluationExecutionDto;
+  isValidDate: boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.evaluation = navParams.get('evaluation');
+  }
+
+  ionViewDidLoad() {
+    this.isValidDate = this.validateDate();
   }
 
   gotToEvaluateStart(){
@@ -20,9 +25,14 @@ export class EvaluateResumePage {
   }
 
   validateDate(): boolean{
-    if(new Date(this.evaluation.audit_initial_date).toLocaleDateString() >= new Date().toLocaleDateString() ){
-      return true;
-    }
-    return false;
+    let dateNow = new Date();
+    dateNow.setHours(0,0,0,0);
+    let year = this.evaluation.audit_initial_date.substring(0,4);
+    let month = this.evaluation.audit_initial_date.substring(5,7);
+    let day = this.evaluation.audit_initial_date.substring(8,10);
+ 
+    let initialEvaluateDate = new Date(parseInt(year), parseInt(month) -1, parseInt(day),0,0,0,0);
+    return dateNow >= initialEvaluateDate;
   }
+
 }
