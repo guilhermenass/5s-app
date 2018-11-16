@@ -7,7 +7,7 @@ export class EvaluationExecutionDto {
     enviroment_block: string;
     enviroment_type_id: number;
     audit_title: string;
-    audit_initial_date: Date;
+    audit_initial_date: string;
     audit_due_date: Date;
     email: string;
     responsible_id: number;
@@ -16,7 +16,7 @@ export class EvaluationExecutionDto {
 
     constructor(id: number, status: number, finish_date: Date,
                 enviroment_name: string, enviroment_block: string, enviroment_type_id: number, 
-                audit_title: string, audit_initial_date: Date, audit_due_date: Date, 
+                audit_title: string, audit_initial_date: string, audit_due_date: Date, 
                 email: string, responsible_id: number, users_id: number){
 
         this.id = id;
