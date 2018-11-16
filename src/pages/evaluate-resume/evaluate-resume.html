@@ -15,9 +15,9 @@
         <ion-row>
           <ion-col col-12 col-sm-6>
             <div text-left>
-              <h2>Auditoria: {{evaluation.audit_title}}</h2>
-              <h2>Ambiente: {{evaluation.enviroment_name}} - Bloco {{evaluation.enviroment_block}}</h2>
-              <h3>Data limite {{evaluation.audit_initial_date}} a {{evaluation.audit_due_date}}</h3>
+              <h2><b>Auditoria:</b> {{evaluation.audit_title}}</h2>
+              <h2><b>Ambiente:</b> {{evaluation.enviroment_name}} - <b>Bloco</b> {{evaluation.enviroment_block}}</h2>
+              <h3><b>Data limite</b> {{evaluation.audit_initial_date | date: 'dd/MM/yyyy'}} a {{evaluation.audit_due_date | date: 'dd/MM/yyyy'}}</h3>
               <br>
               <h3 *ngIf="!isValidDate"  style="color:red">
                 Avaliação ainda não está disponível para execução
