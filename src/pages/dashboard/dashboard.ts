@@ -37,6 +37,10 @@ export class  DashboardPage {
   }
 
   load(){
+    this.evaluates = [];
+    this.pending = new Array<EvaluationExecutionDto>();
+    this.delayed = new Array<EvaluationExecutionDto>();
+    this.concluded = new Array<EvaluationExecutionDto>();
     this.evaluateService.searchAppraiser().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
@@ -78,6 +82,11 @@ export class  DashboardPage {
     } else {
       this.showEvaluatesPending = false;      
     }
+  }
+
+  async doRefresh(refresher) {
+    await this.load();
+    refresher.complete();
   }
 
 }

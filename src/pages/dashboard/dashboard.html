@@ -9,7 +9,15 @@
 
 
 <ion-content style="background-color: #2c3e50;">
-    
+  <ion-refresher (ionRefresh)="doRefresh($event)" >
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Puxe para atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Atualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <div (click)="expandItem(item)">
     <h2 text-center style="color:white">Avaliações</h2>
   </div>

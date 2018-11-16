@@ -30,6 +30,9 @@ export class ResponsibleDashboardPage {
   }
 
   load(){
+    this.evaluates = [];
+    this.pending = new Array<EvaluationExecutionDto>();
+    this.delayed = new Array<EvaluationExecutionDto>();
     this.evaluateService.searchResponsible().subscribe(x => {
       this.evaluates = x;
       this.evaluates.forEach(evaluate =>{
@@ -58,6 +61,11 @@ export class ResponsibleDashboardPage {
     } else {
       this.showEvaluatesPending = false;      
     }
+  }
+
+  async doRefresh(refresher) {
+    await this.load();
+    refresher.complete();
   }
 
 }
