@@ -14,7 +14,7 @@ export class AuthServiceProvider {
           let headers = new Headers();
           headers.append('Content-Type', 'application/json');
   
-          this.http.post(apiUrl+'authenticateApp', JSON.stringify(credentials), {headers: headers})
+          this.http.post(apiUrl+'authenticate', JSON.stringify(credentials), {headers: headers})
             .subscribe(res => {
               resolve(res.json());
             }, (err) => {
