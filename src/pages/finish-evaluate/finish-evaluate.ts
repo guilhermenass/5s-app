@@ -6,6 +6,7 @@ import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { DashboardPage } from '../dashboard/dashboard';
 import { EmailService } from '../../providers/email-service';
 import { FinishEvaluationDto } from '../../dto/finish-evaluation-dto';
+import { UpdateEvaluationDto } from '../../dto/update-evaluation-dto';
 
 @IonicPage()
 @Component({
@@ -16,8 +17,6 @@ export class FinishEvaluatePage {
 
   answers: Array<Answer>;
   questions: Array<Question>;
-  evaluateId: number;
-
   evaluationDto: FinishEvaluationDto;
 
   private readonly EVALUATION_SAVED_SUCCESSFUL = 'A avaliação foi concluída com sucesso';
@@ -27,9 +26,8 @@ export class FinishEvaluatePage {
    */
   answerCompliance = 0;
   answerNonCompliance = 0;
-  
   showDetailsQuestions: boolean = false;
-  
+  isFirstAvaliation: boolean = false;
   public doughnutChartLabels:string[] = ['Conforme', 'Não conforme'];
   public doughnutChartData:number[] = [0,0];
   public doughnutChartType:string = 'doughnut';
@@ -58,6 +56,19 @@ export class FinishEvaluatePage {
     this.doughnutChartData = [this.answerCompliance, this.answerNonCompliance];
   }
 
+  ionViewDidLoad() {
+    this.verifyEvaluationStatus(this.evaluationDto.evaluation.id);
+  }
+
+  verifyEvaluationStatus(evaluationId: number) {
+    this.evaluateService.verifyEvaluationStatus(evaluationId)
+    .subscribe(evaluation => {
+      if(evaluation) {
+        this.isFirstAvaliation = evaluation.grade == null ? true : false;
+      }
+    })
+  }
+
   finishEvaluate(){
     if(this.evaluationDto.evaluation.status === 0){
       this.evaluateService.finishEvaluate(this.evaluationDto.answers)
@@ -81,7 +92,9 @@ export class FinishEvaluatePage {
 
   updateEvaluation(status) {
     let userId = this.getUserId(status);
-    this.evaluateService.updateEvaluation(status, this.evaluationDto.answers[0].evaluateId, userId)
+    let grade = this.generateGrade();
+    let updateEvaluationDto = new UpdateEvaluationDto(status, userId, grade);
+    this.evaluateService.updateEvaluation(this.evaluationDto.answers[0].evaluateId, updateEvaluationDto)
     .subscribe((res) => {
       this.presentAlert(res['message'])
       this.verifyEmail();
@@ -118,6 +131,13 @@ export class FinishEvaluatePage {
       ]
     });
     alert.present();
+  }
+
+  generateGrade(): number {
+    let questionsLength = this.evaluationDto.questions.length;
+    let compliancesLength = this.answerCompliance;
+    let grade = compliancesLength / questionsLength * 10;
+    return grade;
   }
 
   showDetailsQuestionsAnswers(){

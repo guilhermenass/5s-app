@@ -8,6 +8,7 @@ import { EvaluationExecutionDto } from '../../dto/evaluation-execution-dto';
 import { EvaluateServiceProvider } from '../../providers/evaluate-service';
 import { EmailService } from '../../providers/email-service';
 import { ResponsibleDashboardPage } from '../responsible-dashboard/responsible-dashboard';
+import { UpdateEvaluationDto } from '../../dto/update-evaluation-dto';
 
 @IonicPage()
 @Component({
@@ -57,7 +58,7 @@ export class ExecuteActionPlanPage {
    * @param responsible_id no contexto de plano de ação é avaliador
   */
     finishEvaluate() {
-      this.evaluateService.updateEvaluation(3, this.evaluation.id, this.evaluation.responsible_id)
+      this.evaluateService.updateEvaluation(this.evaluation.id, new UpdateEvaluationDto(3, this.evaluation.responsible_id, null))
         .subscribe((res) => {
           this.presentAlert(res['message'])
           this.verifyEmail(this.evaluation.email);
