@@ -8,6 +8,8 @@ import 'rxjs/add/observable/throw';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Answer } from '../model/answer';
 import { EvaluationExecutionDto } from '../dto/evaluation-execution-dto';
+import { Evaluate } from '../model/evaluate';
+import { UpdateEvaluationDto } from '../dto/update-evaluation-dto';
 
 @Injectable()
 export class EvaluateServiceProvider {
@@ -67,7 +69,11 @@ export class EvaluateServiceProvider {
         return Observable.throw(error || 'Server error');
     }
 
-    updateEvaluation(status: number, evaluationId: number, responsibleId) {
-        return this.http.put(`${this.apiUrl}/${evaluationId}`, {status: status, responsibleId: responsibleId});
+    updateEvaluation(evaluationId: number, updateEvaluationDto: UpdateEvaluationDto) {
+        return this.http.put(`${this.apiUrl}/${evaluationId}`, {updateEvaluationDto: updateEvaluationDto});
+    }
+
+    verifyEvaluationStatus(evaluationId: number): Observable<Evaluate> {
+        return this.http.get<Evaluate>(`${this.apiUrl}/${evaluationId}`);
     }
 }

@@ -15,13 +15,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AuditsPage {
 
-  
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AuditsPage');
   }
 
 }

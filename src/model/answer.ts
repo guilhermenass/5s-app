@@ -7,7 +7,6 @@ export class Answer {
      comments: string;
     
      constructor(answerId: number, evaluateId: number, questionId: number, questionTitle: string, comments: string = null){
-      console.log('answerId',answerId)
       this.evaluateId = evaluateId;
       this.questionId = questionId;
       this.questionTitle = questionTitle;
