@@ -22,9 +22,7 @@ export class UserProfilePage {
   
   typeProfile: number;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserProfilePage');
-  }
+  ionViewDidLoad() { }
 
   selectTypeUser(){
     if(this.typeProfile == 1){

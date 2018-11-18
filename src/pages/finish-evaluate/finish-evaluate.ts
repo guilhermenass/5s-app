@@ -28,6 +28,7 @@ export class FinishEvaluatePage {
   answerNonCompliance = 0;
   showDetailsQuestions: boolean = false;
   isFirstAvaliation: boolean = false;
+  grade: number;
   public doughnutChartLabels:string[] = ['Conforme', 'Não conforme'];
   public doughnutChartData:number[] = [0,0];
   public doughnutChartType:string = 'doughnut';
@@ -92,8 +93,10 @@ export class FinishEvaluatePage {
 
   updateEvaluation(status) {
     let userId = this.getUserId(status);
-    let grade = this.generateGrade();
-    let updateEvaluationDto = new UpdateEvaluationDto(status, userId, grade);
+    if(this.isFirstAvaliation) {
+      this.grade = this.generateGrade();
+    }
+    let updateEvaluationDto = new UpdateEvaluationDto(status, userId, this.grade);
     this.evaluateService.updateEvaluation(this.evaluationDto.answers[0].evaluateId, updateEvaluationDto)
     .subscribe((res) => {
       this.presentAlert(res['message'])
