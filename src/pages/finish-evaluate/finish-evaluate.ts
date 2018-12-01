@@ -139,8 +139,8 @@ export class FinishEvaluatePage {
   generateGrade(): number {
     let questionsLength = this.evaluationDto.questions.length;
     let compliancesLength = this.answerCompliance;
-    let grade = compliancesLength / questionsLength * 10;
-    return grade;
+    let grade = (compliancesLength / questionsLength * 10).toFixed(2);
+    return Number(grade);
   }
 
   showDetailsQuestionsAnswers(){
