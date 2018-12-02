@@ -5,6 +5,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { MainPage } from '../main/main';
 import { User } from '../../model/user';
 import { Storage } from '@ionic/storage';
+import * as decode from 'jwt-decode';
 /**
  * Generated class for the LoginPage page.
  *
@@ -41,12 +42,14 @@ export class LoginPage {
     this.authService.login(this.user)
       .then(async (result) => 
       {
-        
+
         this.loading.dismiss();
         this.data = result;
-        User.profile = this.data.profile; 
-        
+        User.profile = this.data.profile;
+
         this.storage.set('token', this.data.token);
+        const tokenPayload = decode(this.data.token);
+        this.storage.set('name', tokenPayload.name);
         this.navCtrl.push(MainPage);
       }, (err) => {
         this.loading.dismiss();     
